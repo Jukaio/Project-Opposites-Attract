@@ -52,11 +52,13 @@ public class GameManager : MonoBehaviour
 
         playerRed = new GameObject("Red Player");
         playerRed.AddComponent<Rigidbody2D>();
+        playerRed.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         playerRed.AddComponent<CapsuleCollider2D>();
         playerRed.transform.parent = playerParent.transform;
 
         playerBlue = new GameObject("Blue Player");
         playerBlue.AddComponent<Rigidbody2D>();
+        playerBlue.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         playerBlue.AddComponent<CapsuleCollider2D>();
         playerBlue.transform.parent = playerParent.transform;
 

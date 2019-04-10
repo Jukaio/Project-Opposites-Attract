@@ -4,18 +4,79 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    Transform parent;
+    PlayerController controller;
+    bool inMovement;
 
-    public float speed;
-    private Rigidbody2D rb2d;
-
-    void Start()
+    private void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        parent = transform.parent;
+        controller = parent.GetComponent<PlayerController>();
+        inMovement = false;
     }
 
-    void Update()
+    public IEnumerator MovePlayerBlue(KeyCode direction)
     {
-        Vector2 movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        rb2d.AddForce(movement * speed);
+        if (!inMovement)
+        {
+            inMovement = true;
+            while (Input.GetKey(direction))
+            {
+                if (direction == KeyCode.None)
+                    break;
+
+                else if (direction == controller.moveLeftBlue)
+                {
+                    transform.Translate(new Vector2(-1f / 10f, 0));
+                    if (Input.GetKey(controller.moveRightBlue))
+                    {
+                        break;
+                    }
+                }
+                else if (direction == controller.moveRightBlue)
+                {
+                    transform.Translate(new Vector2(1f / 10f, 0));
+                    if (Input.GetKey(controller.moveLeftBlue))
+                    {
+                        break;
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            inMovement = false;
+        }
     }
+
+    public IEnumerator MovePlayerRed(KeyCode direction)
+    {
+        if (!inMovement)
+        {
+            inMovement = true;
+            while (Input.GetKey(direction))
+            {
+                if (direction == KeyCode.None)
+                    break;
+
+                else if (direction == controller.moveLeftRed)
+                {
+                    transform.Translate(new Vector2(-1f / 10f, 0));
+                    if (Input.GetKey(controller.moveRightRed))
+                    {
+                        break;
+                    }
+                }
+                else if (direction == controller.moveRightRed)
+                {
+                    transform.Translate(new Vector2(1f / 10f, 0));
+                    if (Input.GetKey(controller.moveLeftRed))
+                    {
+                        break;
+                    }
+                }
+                yield return new WaitForEndOfFrame();
+            }
+            inMovement = false;
+        }
+    }
+
 }

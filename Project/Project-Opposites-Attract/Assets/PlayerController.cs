@@ -23,15 +23,18 @@ public class PlayerController : MonoBehaviour
     public GameObject playerRed;
     public GameObject playerBlue;
 
+    public Movement moveBlue;
+    public Movement moveRed;
+
     void Start()
     {
         spawn = gameObject.GetComponent<SpawnPlayers>();
 
         playerRed = spawn.playerRed;
-        playerRed.AddComponent<Movement>();
+        moveRed = playerRed.AddComponent<Movement>();
 
         playerBlue = spawn.playerBlue;
-        playerBlue.AddComponent<Movement>();
+        moveBlue = playerBlue.AddComponent<Movement>();
 
 
         moveLeftRed = KeyCode.A;
@@ -60,70 +63,73 @@ public class PlayerController : MonoBehaviour
 
 
 
-    KeyCode InputHandler(string playerID)
+    void InputHandler(string playerID)
     {
-        if (playerID == playerRed.name)
+        if (playerID == playerRed.name) //red player
         {
             if (Input.GetKey(moveLeftRed) &&
                 Input.GetKey(moveRightRed))
             {
                 Debug.Log(moveLeftRed + " " + moveRightRed + " " + playerID);
-                return 0;
+                StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
             }
             else if (Input.GetKey(moveLeftRed))
             {
+                StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
                 Debug.Log(moveLeftRed + " " + playerID);
-                return KeyCode.A;
+
             }
             else if (Input.GetKey(moveRightRed))
             {
+                StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
                 Debug.Log(moveRightRed + " " + playerID);
-                return KeyCode.D;
+
             }
 
             if (Input.GetKey(grabLeftRed))
             {
                 Debug.Log(grabLeftRed + " " + playerID);
-                return KeyCode.Q;
+
             }
             else if (Input.GetKey(grabRightRed))
             {
                 Debug.Log(grabRightRed + " " + playerID);
-                return KeyCode.E;
+
             }
         }
 
-        if (playerID == playerBlue.name)
+        if (playerID == playerBlue.name) //blue player
         {
             if (Input.GetKey(moveLeftBlue) &&
                 Input.GetKey(moveRightBlue))
             {
                 Debug.Log(moveLeftBlue + " " + moveRightBlue + " " + playerID);
-                return 0;
+                StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
             }
             else if (Input.GetKey(moveLeftBlue))
             {
+                StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
                 Debug.Log(moveLeftBlue + " " + playerID);
-                return KeyCode.J;
+
             }
             else if (Input.GetKey(moveRightBlue))
             {
+                StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
                 Debug.Log(moveRightBlue + " " + playerID);
-                return KeyCode.L;
+
             }
 
             if (Input.GetKey(grabLeftBlue))
             {
                 Debug.Log(grabLeftBlue + " " + playerID);
-                return KeyCode.U;
+
             }
             else if (Input.GetKey(grabRightBlue))
             {
                 Debug.Log(grabRightBlue + " " + playerID);
-                return KeyCode.O;
+
             }
         }
-        return 0;
     }
 
     IEnumerator PlayerRedUpdate()
