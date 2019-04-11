@@ -61,8 +61,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-
-
     void InputHandler(string playerID)
     {
         if (playerID == playerRed.name) //red player
@@ -77,24 +75,20 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
                 Debug.Log(moveLeftRed + " " + playerID);
-
             }
             else if (Input.GetKey(moveRightRed))
             {
                 StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
                 Debug.Log(moveRightRed + " " + playerID);
-
             }
 
             if (Input.GetKey(grabLeftRed))
             {
                 Debug.Log(grabLeftRed + " " + playerID);
-
             }
             else if (Input.GetKey(grabRightRed))
             {
                 Debug.Log(grabRightRed + " " + playerID);
-
             }
         }
 
@@ -110,39 +104,36 @@ public class PlayerController : MonoBehaviour
             {
                 StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
                 Debug.Log(moveLeftBlue + " " + playerID);
-
             }
             else if (Input.GetKey(moveRightBlue))
             {
                 StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
                 Debug.Log(moveRightBlue + " " + playerID);
-
             }
 
             if (Input.GetKey(grabLeftBlue))
             {
                 Debug.Log(grabLeftBlue + " " + playerID);
-
             }
             else if (Input.GetKey(grabRightBlue))
             {
                 Debug.Log(grabRightBlue + " " + playerID);
-
             }
         }
     }
 
-    IEnumerator PlayerRedUpdate()
+    IEnumerator PlayerRedUpdate() // player red
     {
         while(true)
         {
             InputHandler(playerRed.name);
 
+
             yield return new WaitForEndOfFrame();
         }
     }
 
-    IEnumerator PlayerBlueUpdate()
+    IEnumerator PlayerBlueUpdate() // player blue
     {
         while (true)
         {

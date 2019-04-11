@@ -36,14 +36,20 @@ public class GameManager : MonoBehaviour
     GameObject level;
     GameObject mainCamera;
 
-    Camera mainCameraComp;
+    public Camera mainCameraComp;
 
     void Start()
     {
+        level = new GameObject("Level");
+        level.AddComponent<SpawnLevel>();
+        level.transform.parent = transform;
+
         mainCamera = new GameObject("Main Camera");
         mainCamera.transform.parent = transform;
         mainCamera.AddComponent<Camera>();
         mainCamera.AddComponent<CameraSettings>();
+
+        mainCameraComp = GameObjectExtensions.GetTInChildren<Camera>(gameObject);
 
         playerParent = new GameObject("Parent Player");
         playerParent.transform.parent = transform;
@@ -54,20 +60,18 @@ public class GameManager : MonoBehaviour
         playerRed.AddComponent<Rigidbody2D>();
         playerRed.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         playerRed.AddComponent<CapsuleCollider2D>();
+        playerRed.AddComponent<SpriteRenderer>();
         playerRed.transform.parent = playerParent.transform;
 
         playerBlue = new GameObject("Blue Player");
         playerBlue.AddComponent<Rigidbody2D>();
         playerBlue.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
         playerBlue.AddComponent<CapsuleCollider2D>();
+        playerBlue.AddComponent<SpriteRenderer>();
         playerBlue.transform.parent = playerParent.transform;
 
 
-        mainCameraComp = GameObjectExtensions.GetTInChildren<Camera>(gameObject);
-
-        level = new GameObject("Level");
-        level.AddComponent<SpawnLevel>();
-        level.transform.parent = transform;
+        
     }
 
     void Update()

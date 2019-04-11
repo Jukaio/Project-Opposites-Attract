@@ -38,6 +38,7 @@ public class SpawnLevel : MonoBehaviour
 {
     GameManager gameManager;
 
+
     public LinkedList<WorldFrameNode> worldFrameList = new LinkedList<WorldFrameNode>();
     public List<objectInformation> levelBuildData = new List<objectInformation>();
 
@@ -47,7 +48,7 @@ public class SpawnLevel : MonoBehaviour
     {
         prepareInformation();
 
-        levelBuildData = prepareWorldFrameData(levelBuildData);
+        levelBuildData = PrepareWorldFrameData(levelBuildData);
 
         buildWorldFrame();
     }
@@ -62,16 +63,16 @@ public class SpawnLevel : MonoBehaviour
     }
 
 
-    List<objectInformation> prepareWorldFrameData(List<objectInformation> levelBuildData)
+    List<objectInformation> PrepareWorldFrameData(List<objectInformation> levelBuildData)
     {
-        levelBuildData.Add(new objectInformation(new Vector2(transform.position.x, -mainCamera.orthographicSize + 0.25f),
-            new Vector2(mainCamera.orthographicSize * mainCamera.aspect * 2f, 0.5f), "Ground"));
-        levelBuildData.Add(new objectInformation(new Vector2(-mainCamera.aspect * mainCamera.orthographicSize - 0.25f, transform.position.x),
-            new Vector2(0.5f, mainCamera.orthographicSize * 2f), "Left"));
-        levelBuildData.Add(new objectInformation(new Vector2(transform.position.x, mainCamera.orthographicSize - 0.25f),
-            new Vector2(mainCamera.orthographicSize * mainCamera.aspect * 2f, 0.5f), "Top"));
-        levelBuildData.Add(new objectInformation(new Vector2(mainCamera.aspect * mainCamera.orthographicSize + 0.25f, transform.position.x),
-            new Vector2(0.5f, mainCamera.orthographicSize * 2f), "Right"));
+        levelBuildData.Add(new objectInformation(new Vector2(transform.position.x, -12 + 0.25f),
+            new Vector2(22 * 2f, 0.5f), "Ground"));
+        levelBuildData.Add(new objectInformation(new Vector2(-22 - 0.25f, transform.position.x),
+            new Vector2(0.5f, 12 * 2f), "Left"));
+        levelBuildData.Add(new objectInformation(new Vector2(transform.position.x, 12 - 0.25f),
+            new Vector2(22 * 2f, 0.5f), "Top"));
+        levelBuildData.Add(new objectInformation(new Vector2(22 + 0.25f, transform.position.x),
+            new Vector2(0.5f, 12 * 2f), "Right"));
         return levelBuildData;
     }
 
@@ -82,6 +83,6 @@ public class SpawnLevel : MonoBehaviour
             worldFrameList.AddLast(new WorldFrameNode(levelBuildData[i].name, transform, levelBuildData[i].cooridnates, levelBuildData[i].colliderSize));
         }
     }
-
+    
 
 }
