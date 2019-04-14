@@ -35,6 +35,8 @@ public class SpawnPlayers : MonoBehaviour
         playerBlue.transform.position = new Vector2(22 * (-8f / 10f), (12 * (-4f / 5f)));
         playerRed.transform.position = new Vector2(22 * (-9f / 10f), (12 * (-4f / 5f)));
 
+        
+
         //Find Image in Path
         blueSprite = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/placeholderBlue.png", typeof(Sprite));
         redSprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/placeholderRed.png", typeof(Sprite));

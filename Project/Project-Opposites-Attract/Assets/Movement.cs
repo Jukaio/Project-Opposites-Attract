@@ -6,12 +6,23 @@ public class Movement : MonoBehaviour
 {
     Transform parent;
     PlayerController controller;
+    public SpawnLevel levelSpawner;
+
     bool inMovement;
 
     private void Start()
     {
         parent = transform.parent;
         controller = parent.GetComponent<PlayerController>();
+
+        for (int i = 0; i < transform.parent.parent.childCount; i++)
+        {
+            if (transform.parent.parent.GetChild(i).GetComponent<SpawnLevel>() != null)
+            {
+                levelSpawner = transform.parent.parent.GetChild(i).GetComponent<SpawnLevel>();
+            }
+        }
+        
         inMovement = false;
     }
 
@@ -27,7 +38,8 @@ public class Movement : MonoBehaviour
 
                 else if (direction == controller.moveLeftBlue)
                 {
-                    transform.Translate(new Vector2(-1f / 10f, 0));
+                    if(!(transform.position.x <= -levelSpawner.levelHorSize + 1))
+                        transform.Translate(new Vector2(-1f / 10f, 0));
                     if (Input.GetKey(controller.moveRightBlue))
                     {
                         break;
@@ -35,7 +47,8 @@ public class Movement : MonoBehaviour
                 }
                 else if (direction == controller.moveRightBlue)
                 {
-                    transform.Translate(new Vector2(1f / 10f, 0));
+                    if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
+                        transform.Translate(new Vector2(1f / 10f, 0));
                     if (Input.GetKey(controller.moveLeftBlue))
                     {
                         break;
@@ -59,7 +72,8 @@ public class Movement : MonoBehaviour
 
                 else if (direction == controller.moveLeftRed)
                 {
-                    transform.Translate(new Vector2(-1f / 10f, 0));
+                    if (!(transform.position.x <= -levelSpawner.levelHorSize + 1))
+                        transform.Translate(new Vector2(-1f / 10f, 0));
                     if (Input.GetKey(controller.moveRightRed))
                     {
                         break;
@@ -67,7 +81,8 @@ public class Movement : MonoBehaviour
                 }
                 else if (direction == controller.moveRightRed)
                 {
-                    transform.Translate(new Vector2(1f / 10f, 0));
+                    if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
+                        transform.Translate(new Vector2(1f / 10f, 0));
                     if (Input.GetKey(controller.moveLeftRed))
                     {
                         break;

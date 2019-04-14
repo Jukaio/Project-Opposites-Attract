@@ -61,72 +61,72 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void InputHandler(string playerID)
+    void InputHandlerRed()
     {
-        if (playerID == playerRed.name) //red player
+        if (Input.GetKey(moveLeftRed) &&
+            Input.GetKey(moveRightRed))
         {
-            if (Input.GetKey(moveLeftRed) &&
-                Input.GetKey(moveRightRed))
-            {
-                Debug.Log(moveLeftRed + " " + moveRightRed + " " + playerID);
-                StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
-            }
-            else if (Input.GetKey(moveLeftRed))
-            {
-                StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
-                Debug.Log(moveLeftRed + " " + playerID);
-            }
-            else if (Input.GetKey(moveRightRed))
-            {
-                StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
-                Debug.Log(moveRightRed + " " + playerID);
-            }
-
-            if (Input.GetKey(grabLeftRed))
-            {
-                Debug.Log(grabLeftRed + " " + playerID);
-            }
-            else if (Input.GetKey(grabRightRed))
-            {
-                Debug.Log(grabRightRed + " " + playerID);
-            }
+            Debug.Log(moveLeftRed + " " + moveRightRed + " " );
+            StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
+        }
+        else if (Input.GetKey(moveLeftRed))
+        {
+            StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
+            Debug.Log(moveLeftRed + " " );
+        }
+        else if (Input.GetKey(moveRightRed))
+        {
+            StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
+            Debug.Log(moveRightRed + " " );
         }
 
-        if (playerID == playerBlue.name) //blue player
+        if (Input.GetKey(grabLeftRed))
         {
-            if (Input.GetKey(moveLeftBlue) &&
-                Input.GetKey(moveRightBlue))
-            {
-                Debug.Log(moveLeftBlue + " " + moveRightBlue + " " + playerID);
-                StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
-            }
-            else if (Input.GetKey(moveLeftBlue))
-            {
-                StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
-                Debug.Log(moveLeftBlue + " " + playerID);
-            }
-            else if (Input.GetKey(moveRightBlue))
-            {
-                StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
-                Debug.Log(moveRightBlue + " " + playerID);
-            }
+            Debug.Log(grabLeftRed + " " );
+        }
+        else if (Input.GetKey(grabRightRed))
+        {
+            Debug.Log(grabRightRed + " " );
+        }
 
-            if (Input.GetKey(grabLeftBlue))
-            {
-                Debug.Log(grabLeftBlue + " " + playerID);
-            }
-            else if (Input.GetKey(grabRightBlue))
-            {
-                Debug.Log(grabRightBlue + " " + playerID);
-            }
+    }
+
+    void InputHandlerBlue()
+    {
+
+        if (Input.GetKey(moveLeftBlue) &&
+            Input.GetKey(moveRightBlue))
+        {
+            Debug.Log(moveLeftBlue + " " + moveRightBlue + " ");
+            StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
+        }
+        else if (Input.GetKey(moveLeftBlue))
+        {
+            StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
+            Debug.Log(moveLeftBlue + " ");
+        }
+        else if (Input.GetKey(moveRightBlue))
+        {
+            StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
+            Debug.Log(moveRightBlue + " ");
+        }
+
+        if (Input.GetKey(grabLeftBlue))
+        {
+            Debug.Log(grabLeftBlue + " ");
+        }
+        else if (Input.GetKey(grabRightBlue))
+        {
+            Debug.Log(grabRightBlue + " ");
         }
     }
+    
 
     IEnumerator PlayerRedUpdate() // player red
     {
         while(true)
         {
-            InputHandler(playerRed.name);
+            InputHandlerRed();
 
 
             yield return new WaitForEndOfFrame();
@@ -137,7 +137,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            InputHandler(playerBlue.name);
+            InputHandlerBlue();
 
             yield return new WaitForEndOfFrame();
         }
