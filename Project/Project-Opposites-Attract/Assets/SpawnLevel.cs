@@ -11,7 +11,6 @@ public class WorldFrameNode
 
     float x, y;
 
-
     public WorldFrameNode(string objectName, Transform parent, Vector2 position, Vector2 colliderSize)
     {
         GameObject obj = new GameObject(objectName);
@@ -19,7 +18,6 @@ public class WorldFrameNode
         obj.transform.parent = parent;
         obj.transform.position = position;
     }
-
 }
 
 public struct objectInformation
@@ -44,7 +42,6 @@ public class SpawnLevel : MonoBehaviour
 
     Sprite frameSprite;
 
-
     public int levelHorSize = 22;
     public int levelVertSize = 12;
 
@@ -55,8 +52,6 @@ public class SpawnLevel : MonoBehaviour
     List<GameObject> frameTopList = new List<GameObject>();
     List<GameObject> frameLeftList = new List<GameObject>();
     List<GameObject> frameRightList = new List<GameObject>();
-
-
     public Camera mainCamera;
 
     void Start()

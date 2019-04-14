@@ -16,16 +16,13 @@ public class SpawnPlayers : MonoBehaviour
     public Sprite redSprite;
     public Sprite blueSprite;
 
-
     public GameManager gameManager;
-
-
 
     void Start()
     {
         gameManager = transform.parent.gameObject.GetComponent<GameManager>();
 
-
+ 
         playerRedSpriteRenderer = GetComponent<SpriteRenderer>();
         playerBlueSpriteRenderer = GetComponent<SpriteRenderer>();
 
@@ -35,7 +32,6 @@ public class SpawnPlayers : MonoBehaviour
         playerBlue.transform.position = new Vector2(22 * (-8f / 10f), (12 * (-4f / 5f)));
         playerRed.transform.position = new Vector2(22 * (-9f / 10f), (12 * (-4f / 5f)));
 
-        
 
         //Find Image in Path
         blueSprite = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/placeholderBlue.png", typeof(Sprite));

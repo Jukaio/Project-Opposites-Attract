@@ -16,12 +16,11 @@ public class CameraSettings : MonoBehaviour
         }
     }
 
-
     Camera mainCamera;
     Vector2 cameraSize;
 
-    GameObject bluePlayer;
-    GameObject redPlayer;
+    public GameObject bluePlayer;
+    public GameObject redPlayer;
 
     GameObject invisPlayer;
 
@@ -44,8 +43,7 @@ public class CameraSettings : MonoBehaviour
     private void Start()
     {
         mainCamera = GetComponent<Camera>();
-        bluePlayer = transform.parent.GetComponent<GameManager>().GetBluePlayer();
-        redPlayer = transform.parent.GetComponent<GameManager>().GetRedPlayer();
+       
         mainCamera.nearClipPlane = 0;
 
         cameraSize = new Vector2(mainCamera.aspect * mainCamera.orthographicSize, mainCamera.orthographicSize);
@@ -69,46 +67,39 @@ public class CameraSettings : MonoBehaviour
         invisPlayer = new GameObject("invis Player");
         invisPlayer.transform.parent = redPlayer.transform.parent;
         StartCoroutine(CreateDistancePoint());
-        
-        
     }
-
 
     private void Update()
     {
-        if(redPlayer.transform.position.x - cameraSize.x <= leftData.position) //Horizontal
-        {
-            transform.position = new Vector2(leftData.position + cameraSize.x, transform.position.y);
+        //this shit cant fiond player objects
+        //if(redPlayer.transform.position.x - cameraSize.x <= leftData.position) //Horizontal
+        //{
+        //    transform.position = new Vector2(leftData.position + cameraSize.x, transform.position.y);
 
-        }
-        else if(redPlayer.transform.position.x + cameraSize.x >= rightData.position)
-        {
-            transform.position = new Vector2(rightData.position - cameraSize.x, transform.position.y);
-        }
-        else
-            transform.position = new Vector2(redPlayer.transform.position.x, transform.position.y); //invis player == camera point for adjustment
+        //}
+        //else if(redPlayer.transform.position.x + cameraSize.x >= rightData.position)
+        //{
+        //    transform.position = new Vector2(rightData.position - cameraSize.x, transform.position.y);
+        //}
+        //else
+        //    transform.position = new Vector2(redPlayer.transform.position.x, transform.position.y); //invis player == camera point for adjustment
 
-        if (redPlayer.transform.position.y <= groundData.position + cameraSize.y) //Vertical 
-        {
-            transform.position = new Vector2(transform.position.x, groundData.position + cameraSize.y - groundData.size);
+        //if (redPlayer.transform.position.y <= groundData.position + cameraSize.y) //Vertical 
+        //{
+        //    transform.position = new Vector2(transform.position.x, groundData.position + cameraSize.y - groundData.size);
 
-        }
-        else if (redPlayer.transform.position.y >= topData.position - cameraSize.y)
-        {
-            transform.position = new Vector2(transform.position.x, topData.position - cameraSize.y + topData.size);
+        //}
+        //else if (redPlayer.transform.position.y >= topData.position - cameraSize.y)
+        //{
+        //    transform.position = new Vector2(transform.position.x, topData.position - cameraSize.y + topData.size);
 
-        }
-        else
-            transform.position = new Vector2(transform.position.x, redPlayer.transform.position.y);
+        //}
+        //else
+        //    transform.position = new Vector2(transform.position.x, redPlayer.transform.position.y);
     }
 
     IEnumerator CreateDistancePoint()
     {
-
-
-
-
-
         while(true)
         {
             //distancePoint = new Vector2(redPlayer.transform.position.x - bluePlayer.transform.position.x, redPlayer.transform.position.y);

@@ -30,20 +30,17 @@ public static class GameObjectExtensions
 
 public class GameManager : MonoBehaviour
 {
-    GameObject playerRed;
-    GameObject playerBlue;
+    public GameObject playerRed;
+    public GameObject playerBlue;
     public GameObject playerParent;
     GameObject level;
     GameObject mainCamera;
-
-
 
     public Camera mainCameraComp;
 
     void Start()
     {
 
-        
     }
 
     void Update()
@@ -77,6 +74,4 @@ public class GameManager : MonoBehaviour
         return mainCameraComp;  
     }
 
-    
-    
 }
