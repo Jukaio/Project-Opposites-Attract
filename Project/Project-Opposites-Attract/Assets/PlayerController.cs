@@ -152,16 +152,15 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Throw(KeyCode obj1Code, GameObject obj2)
     {
-        //still doesnt work well
         //limit jump times
         //just do grounded
-        if (!isThrown && inRange)
+        if (inRange && !isThrown)
         {
             isThrown = true;
-            if (Input.GetKey(obj1Code))
+            while (Input.GetKey(obj1Code))
             {
-                obj2.transform.Translate(new Vector2(0f, 1.5f));
-                isGrounded = false;
+                //obj2.transform.Translate(new Vector2(0f, 1.5f));
+                obj2.GetComponent<Physics>().jump = true;
                 yield return new WaitForEndOfFrame();
             }
             isThrown = false;
@@ -171,16 +170,6 @@ public class PlayerController : MonoBehaviour
     bool InRange(GameObject obj1, GameObject obj2, float dist) //just range
     {
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= dist;
-    }
-
-    //i need this shit to switch to gorunded ty
-    void This(GameObject collision)
-    { 
-        print("collision");
-        if (collision.gameObject.tag == "ground")
-        {
-            isGrounded = true;
-        }
     }
 
     void DisableMovememnt(GameObject obj, bool setToZero)

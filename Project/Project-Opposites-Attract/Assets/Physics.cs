@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Physics : MonoBehaviour
 {
-    public Vector2 position;
     public Vector2 velocity;
+    public Vector2 startVelocity;
+
     public Vector2 gravity;
 
     private float previousTime;
@@ -13,18 +14,38 @@ public class Physics : MonoBehaviour
 
     private float dt;
 
+    public bool isGrounded;
+
+    public bool jump;
+
     void Awake()
     {
         dt = currentTime - previousTime;
-        position = transform.position;
+        startVelocity = velocity;
     }
 
     void Update()
     {
-        UpdatePosition(dt);
+        if (jump)
+        {
+            UpdatePosition();
+        }
+
     }
 
-    void UpdatePosition(float dt)
+    public void UpdatePosition()
+    {
+        transform.position = new Vector2(transform.position.x + velocity.x * dt, transform.position.y + velocity.y * dt);
+        velocity += gravity * dt;
+        Updatedt();
+
+        if (isGrounded)
+        {
+            jump = false;
+        }
+    }
+
+    void Updatedt()
     {
         previousTime = currentTime;
         currentTime = Time.time;
@@ -35,8 +56,15 @@ public class Physics : MonoBehaviour
         {
             dt = 0.15f;
         }
+    }
 
-        transform.position = new Vector2(transform.position.x + velocity.x * dt, transform.position.y + velocity.y * dt);
-        velocity = velocity + gravity * dt;
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            print("ground");
+            isGrounded = true;
+            velocity = startVelocity;
+        }
     }
 }
