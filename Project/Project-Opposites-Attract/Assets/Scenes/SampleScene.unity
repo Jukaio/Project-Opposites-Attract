@@ -1307,8 +1307,8 @@ MonoBehaviour:
   inRange: 0
   isGrabed: 0
   isThrown: 0
-  isGrounded: 0
-  checkDist: 3
+  isGrounded: 1
+  checkDist: 2.5
 --- !u!1 &794081351022224665
 GameObject:
   m_ObjectHideFlags: 0
@@ -6086,6 +6086,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSpawner: {fileID: 0}
+  speed: 0
+  normalSpeed: 0
 --- !u!1 &4487440798616527339
 GameObject:
   m_ObjectHideFlags: 0
@@ -6483,13 +6485,35 @@ GameObject:
   m_Component:
   - component: {fileID: 897184159091162576}
   - component: {fileID: 2238856414765806297}
+  - component: {fileID: 4799603321181878616}
   m_Layer: 0
   m_Name: Level
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!50 &4799603321181878616
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799603321181878615}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &4898873609666174437
 Transform:
   m_ObjectHideFlags: 0
@@ -6698,6 +6722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelSpawner: {fileID: 0}
+  speed: 0
+  normalSpeed: 0
 --- !u!4 &5127226907572697273
 Transform:
   m_ObjectHideFlags: 0

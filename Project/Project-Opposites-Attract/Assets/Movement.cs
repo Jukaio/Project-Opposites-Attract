@@ -10,6 +10,9 @@ public class Movement : MonoBehaviour
 
     bool inMovement;
 
+    public float speed;
+    public float normalSpeed;
+
     private void Start()
     {
         parent = transform.parent;
@@ -22,7 +25,8 @@ public class Movement : MonoBehaviour
                 levelSpawner = transform.parent.parent.GetChild(i).GetComponent<SpawnLevel>();
             }
         }
-        
+        speed = 1f / 10f;
+        normalSpeed = speed;
         inMovement = false;
     }
 
@@ -39,7 +43,7 @@ public class Movement : MonoBehaviour
                 else if (direction == controller.moveLeftBlue)
                 {
                     if(!(transform.position.x <= -levelSpawner.levelHorSize + 1))
-                        transform.Translate(new Vector2(-1f / 10f, 0));
+                        transform.Translate(new Vector2(-speed, 0));
                     if (Input.GetKey(controller.moveRightBlue))
                     {
                         break;
@@ -48,7 +52,7 @@ public class Movement : MonoBehaviour
                 else if (direction == controller.moveRightBlue)
                 {
                     if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
-                        transform.Translate(new Vector2(1f / 10f, 0));
+                        transform.Translate(new Vector2(speed, 0));
                     if (Input.GetKey(controller.moveLeftBlue))
                     {
                         break;
@@ -73,7 +77,7 @@ public class Movement : MonoBehaviour
                 else if (direction == controller.moveLeftRed)
                 {
                     if (!(transform.position.x <= -levelSpawner.levelHorSize + 1))
-                        transform.Translate(new Vector2(-1f / 10f, 0));
+                        transform.Translate(new Vector2(-speed, 0));
                     if (Input.GetKey(controller.moveRightRed))
                     {
                         break;
@@ -82,7 +86,7 @@ public class Movement : MonoBehaviour
                 else if (direction == controller.moveRightRed)
                 {
                     if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
-                        transform.Translate(new Vector2(1f / 10f, 0));
+                        transform.Translate(new Vector2(speed, 0));
                     if (Input.GetKey(controller.moveLeftRed))
                     {
                         break;

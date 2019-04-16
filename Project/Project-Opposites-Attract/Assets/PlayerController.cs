@@ -133,17 +133,18 @@ public class PlayerController : MonoBehaviour
     }
 
     IEnumerator Grab(KeyCode obj1Code, GameObject obj1, GameObject obj2)
-    {
-        //fix so other player cant move while being grabbed 
+    { 
         if (!isGrabed && inRange)
         {
             isGrabed = true;
+            DisableMovememnt(obj2, true);
             while (Input.GetKey(obj1Code))
             {
                 obj2.transform.parent = obj1.transform;
                 yield return new WaitForEndOfFrame();
             }
             isGrabed = false;
+            DisableMovememnt(obj2, false);
             obj1.transform.DetachChildren();
             obj2.transform.parent = transform;
         }
@@ -151,14 +152,16 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Throw(KeyCode obj1Code, GameObject obj2)
     {
-        //fix so can throw only once with impulse
-        //need check grounded for this
+        //still doesnt work well
+        //limit jump times
+        //just do grounded
         if (!isThrown && inRange)
         {
             isThrown = true;
-            while (Input.GetKey(obj1Code))
+            if (Input.GetKey(obj1Code))
             {
-                obj2.transform.Translate(new Vector2(0f, 1f));
+                obj2.transform.Translate(new Vector2(0f, 1.5f));
+                isGrounded = false;
                 yield return new WaitForEndOfFrame();
             }
             isThrown = false;
@@ -168,6 +171,24 @@ public class PlayerController : MonoBehaviour
     bool InRange(GameObject obj1, GameObject obj2, float dist) //just range
     {
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= dist;
+    }
+
+    //i need this shit to switch to gorunded ty
+    void This(GameObject collision)
+    { 
+        print("collision");
+        if (collision.gameObject.tag == "ground")
+        {
+            isGrounded = true;
+        }
+    }
+
+    void DisableMovememnt(GameObject obj, bool setToZero)
+    {
+        if (setToZero)
+            obj.GetComponent<Movement>().speed = 0;
+        else
+            obj.GetComponent<Movement>().speed = obj.GetComponent<Movement>().normalSpeed;
     }
 
     void SetButtons()

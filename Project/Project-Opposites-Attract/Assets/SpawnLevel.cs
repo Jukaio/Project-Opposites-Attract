@@ -56,14 +56,14 @@ public class SpawnLevel : MonoBehaviour
 
     void Start()
     {
-        frameSprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/placeholderGreen.png", typeof(Sprite));
+        //frameSprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/placeholderGreen.png", typeof(Sprite));
 
-        PrepareInformation();
+        //PrepareInformation();
 
-        levelBuildData = PrepareWorldFrameData(levelBuildData);
+        //levelBuildData = PrepareWorldFrameData(levelBuildData);
 
-        BuildWorldFrame();
-        DrawWorldFrame();
+        //BuildWorldFrame();
+        //DrawWorldFrame();
 
     }
 

@@ -22,7 +22,6 @@ public class SpawnPlayers : MonoBehaviour
     {
         gameManager = transform.parent.gameObject.GetComponent<GameManager>();
 
- 
         playerRedSpriteRenderer = GetComponent<SpriteRenderer>();
         playerBlueSpriteRenderer = GetComponent<SpriteRenderer>();
 
