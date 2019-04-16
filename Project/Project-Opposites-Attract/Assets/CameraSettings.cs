@@ -18,12 +18,12 @@ public class CameraSettings : MonoBehaviour
 
     Camera mainCamera;
     Vector2 cameraSize;
+    public Vector2 cameraOffset;
 
     public GameObject bluePlayer;
     public GameObject redPlayer;
 
     GameObject invisPlayer;
-
     public float distancePlayers;
 
     SpawnLevel levelSpawner;
@@ -71,31 +71,30 @@ public class CameraSettings : MonoBehaviour
 
     private void Update()
     {
-        //this shit cant fiond player objects
-        //if(redPlayer.transform.position.x - cameraSize.x <= leftData.position) //Horizontal
-        //{
-        //    transform.position = new Vector2(leftData.position + cameraSize.x, transform.position.y);
+        if (redPlayer.transform.position.x - cameraSize.x <= leftData.position) //Horizontal
+        {
+            transform.position = new Vector2(leftData.position + cameraSize.x + cameraOffset.x, transform.position.y);
 
-        //}
-        //else if(redPlayer.transform.position.x + cameraSize.x >= rightData.position)
-        //{
-        //    transform.position = new Vector2(rightData.position - cameraSize.x, transform.position.y);
-        //}
-        //else
-        //    transform.position = new Vector2(redPlayer.transform.position.x, transform.position.y); //invis player == camera point for adjustment
+        }
+        else if (redPlayer.transform.position.x + cameraSize.x >= rightData.position)
+        {
+            transform.position = new Vector2(rightData.position - cameraSize.x - cameraOffset.x, transform.position.y);
+        }
+        else
+            transform.position = new Vector2(redPlayer.transform.position.x, transform.position.y); //invis player == camera point for adjustment
 
-        //if (redPlayer.transform.position.y <= groundData.position + cameraSize.y) //Vertical 
-        //{
-        //    transform.position = new Vector2(transform.position.x, groundData.position + cameraSize.y - groundData.size);
+        if (redPlayer.transform.position.y <= groundData.position + cameraSize.y + cameraOffset.y) //Vertical 
+        {
+            transform.position = new Vector2(transform.position.x, groundData.position + cameraSize.y - cameraOffset.y);
 
-        //}
-        //else if (redPlayer.transform.position.y >= topData.position - cameraSize.y)
-        //{
-        //    transform.position = new Vector2(transform.position.x, topData.position - cameraSize.y + topData.size);
+        }
+        else if (redPlayer.transform.position.y >= topData.position - cameraSize.y)
+        {
+            transform.position = new Vector2(transform.position.x, topData.position - cameraSize.y + topData.size);
 
-        //}
-        //else
-        //    transform.position = new Vector2(transform.position.x, redPlayer.transform.position.y);
+        }
+        else
+            transform.position = new Vector2(transform.position.x, redPlayer.transform.position.y);
     }
 
     IEnumerator CreateDistancePoint()

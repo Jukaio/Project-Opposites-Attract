@@ -33,8 +33,8 @@ public class SpawnPlayers : MonoBehaviour
 
 
         //Find Image in Path
-        blueSprite = (Sprite) AssetDatabase.LoadAssetAtPath("Assets/placeholderBlue.png", typeof(Sprite));
-        redSprite = (Sprite)AssetDatabase.LoadAssetAtPath("Assets/placeholderRed.png", typeof(Sprite));
+        blueSprite = Resources.Load<Sprite>("placeholderBlue");
+        redSprite = Resources.Load<Sprite>("placeholderRed");
 
         playerRedSpriteRenderer = playerRed.GetComponent<SpriteRenderer>();
         playerBlueSpriteRenderer = playerBlue.GetComponent<SpriteRenderer>();
