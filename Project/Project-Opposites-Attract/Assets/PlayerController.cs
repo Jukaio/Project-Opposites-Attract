@@ -28,16 +28,15 @@ public class PlayerController : MonoBehaviour
     //grab shit 
     public bool inRange;
     public bool isGrabed;
-    public bool isThrown;
     public bool isGrounded;
     public float checkDist;
 
     void Start()
     {
         playerRed.transform.position = new Vector2((mainCamera.orthographicSize * mainCamera.aspect) * (-9f / 10f), ((mainCamera.orthographicSize) * (-4f / 5f)));
-        moveRed = playerRed.GetComponent<Movement>();
-
         playerBlue.transform.position = new Vector2((mainCamera.orthographicSize * mainCamera.aspect) * (-8f / 10f), ((mainCamera.orthographicSize) * (-4f / 5f)));
+
+        moveRed = playerRed.GetComponent<Movement>();
         moveBlue = playerBlue.GetComponent<Movement>();
 
         SetButtons();
@@ -88,8 +87,8 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKey(moveLeftBlue) &&
                 Input.GetKey(moveRightBlue))
             {
-                Debug.Log(moveLeftBlue + " " + moveRightBlue + " " + playerID);
                 StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
+                Debug.Log(moveLeftBlue + " " + moveRightBlue + " " + playerID);
             }
             else if (Input.GetKey(moveLeftBlue))
             {
@@ -152,18 +151,14 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Throw(KeyCode obj1Code, GameObject obj2)
     {
-        //limit jump times
-        //just do grounded
-        if (inRange && !isThrown)
+        if (inRange)
         {
-            isThrown = true;
-            while (Input.GetKey(obj1Code))
+            while (Input.GetKey(obj1Code) && isGrounded)
             {
-                //obj2.transform.Translate(new Vector2(0f, 1.5f));
-                obj2.GetComponent<Physics>().jump = true;
+                obj2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
+                isGrounded = false;
                 yield return new WaitForEndOfFrame();
             }
-            isThrown = false;
         }
     }
 
@@ -194,5 +189,4 @@ public class PlayerController : MonoBehaviour
         grabBlue = KeyCode.U;
         throwBlue = KeyCode.O;
     }
-
 }

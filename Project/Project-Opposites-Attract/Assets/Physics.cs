@@ -26,10 +26,6 @@ public class Physics : MonoBehaviour
 
     void Update()
     {
-        if (jump)
-        {
-            UpdatePosition();
-        }
 
     }
 
@@ -39,10 +35,10 @@ public class Physics : MonoBehaviour
         velocity += gravity * dt;
         Updatedt();
 
-        if (isGrounded)
-        {
-            jump = false;
-        }
+        //if (isGrounded)
+        //{
+        //    jump = false;
+        //}
     }
 
     void Updatedt()
@@ -58,13 +54,28 @@ public class Physics : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "ground")
+    //    {
+    //        print("ground");
+    //        isGrounded = true;
+    //        velocity = startVelocity;
+    //    }
+    //}
+
+    public IEnumerator RunJump(KeyCode key)
     {
-        if (collision.gameObject.tag == "ground")
+        while (true)
         {
-            print("ground");
-            isGrounded = true;
-            velocity = startVelocity;
+            UpdatePosition();
+            yield return new WaitForEndOfFrame();
+            if (velocity.y <= -startVelocity.y)
+            {
+                velocity = startVelocity;
+                break;
+            }
         }
+        
     }
 }

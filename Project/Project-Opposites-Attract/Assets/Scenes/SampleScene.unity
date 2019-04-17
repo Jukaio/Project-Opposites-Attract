@@ -299,8 +299,7 @@ MonoBehaviour:
   moveRed: {fileID: 5104968765609379959}
   inRange: 0
   isGrabed: 0
-  isThrown: 0
-  isGrounded: 1
+  isGrounded: 0
   checkDist: 2.5
 --- !u!4 &897184159091162576
 Transform:
@@ -436,7 +435,6 @@ GameObject:
   - component: {fileID: 615584961477688667}
   - component: {fileID: 8817545569017596586}
   - component: {fileID: 4444693234067045104}
-  - component: {fileID: 4602244216504948868}
   m_Layer: 0
   m_Name: Blue Player
   m_TagString: Untagged
@@ -444,23 +442,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &4602244216504948868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602244216504948867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18688c7997f22e4468295f4da57e1cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 4}
-  startVelocity: {x: 0, y: 0}
-  gravity: {x: 0, y: -2}
-  isGrounded: 0
-  jump: 0
 --- !u!1 &4799603321181878615
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +509,6 @@ GameObject:
   - component: {fileID: 2475103395871763931}
   - component: {fileID: 7291024662289358127}
   - component: {fileID: 5104968765609379959}
-  - component: {fileID: 5013730010986637764}
   m_Layer: 0
   m_Name: Red Player
   m_TagString: Untagged
@@ -536,23 +516,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5013730010986637764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5013730010986637763}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18688c7997f22e4468295f4da57e1cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocity: {x: 0, y: 5}
-  startVelocity: {x: 0, y: 0}
-  gravity: {x: 0, y: -2}
-  isGrounded: 0
-  jump: 0
 --- !u!114 &5104968765609379959
 MonoBehaviour:
   m_ObjectHideFlags: 0
