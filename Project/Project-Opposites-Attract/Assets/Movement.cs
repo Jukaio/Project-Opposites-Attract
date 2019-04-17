@@ -13,6 +13,9 @@ public class Movement : MonoBehaviour
     public float speed;
     public float normalSpeed;
 
+    public bool disableBlue;
+    public bool disableRed;
+
     private void Start()
     {
         parent = transform.parent;
@@ -98,11 +101,31 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
             print("collides");
+            controller.isGrounded = true;
+            disableBlue = false;
+            disableRed = false;
+        }
+        if (collision.gameObject.tag == "blueTile")
+        {
+            disableBlue = false;
+            disableRed = true;
+            controller.isGrounded = true;
+        }
+        else if (collision.gameObject.tag == "redTile")
+        {
+            disableBlue = true;
+            disableRed = false;
+            controller.isGrounded = true;
+        }
+        else
+        {
+            disableBlue = false;
+            disableRed = false;
             controller.isGrounded = true;
         }
     }

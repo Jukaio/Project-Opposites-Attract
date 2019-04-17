@@ -48,6 +48,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         inRange = InRange(playerRed, playerBlue, checkDist);
+
+        DisableMovememnt(playerBlue, moveBlue.disableBlue && !moveBlue.disableRed);
+        DisableMovememnt(playerRed, !moveRed.disableBlue && moveRed.disableRed);
+        if (!isGrounded)
+        {
+            DisableMovememnt(playerBlue, false);
+            DisableMovememnt(playerRed, false);
+        }
+
     }
 
     void InputHandler(string playerID)
