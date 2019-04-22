@@ -6,6 +6,10 @@ public class Movement : MonoBehaviour
 {
     Transform parent;
     PlayerController controller;
+
+    KeyCode moveLeft;
+    KeyCode moveRight;
+
     public SpawnLevel levelSpawner;
 
     bool inMovement;
@@ -28,12 +32,30 @@ public class Movement : MonoBehaviour
                 levelSpawner = transform.parent.parent.GetChild(i).GetComponent<SpawnLevel>();
             }
         }
+
+        if (GetComponent<InputHandlerBlue_base>() != null)
+        {
+            moveLeft = GetComponent<InputHandlerBlue_base>().moveLeft;
+            moveRight = GetComponent<InputHandlerBlue_base>().moveRight;
+        }
+        else if(GetComponent<InputHandlerRed_base>() != null)
+        {
+            moveLeft = GetComponent<InputHandlerRed_base>().moveLeft;
+            moveRight = GetComponent<InputHandlerRed_base>().moveRight;
+        }
+        else
+        {
+            Debug.LogError("NO INPUT COMPONENT FOUND!!");
+        }
+
+
         speed = 1f / 10f;
         normalSpeed = speed;
         inMovement = false;
     }
 
-    public IEnumerator MovePlayerBlue(KeyCode direction)
+
+    public IEnumerator MovePlayer(KeyCode direction)
     {
         if (!inMovement)
         {
@@ -43,20 +65,20 @@ public class Movement : MonoBehaviour
                 if (direction == KeyCode.None)
                     break;
 
-                else if (direction == controller.moveLeftBlue)
+                else if (direction == moveLeft)
                 {
                     if(!(transform.position.x <= -levelSpawner.levelHorSize + 1))
                         transform.Translate(new Vector2(-speed, 0));
-                    if (Input.GetKey(controller.moveRightBlue))
+                    if (Input.GetKey(moveRight))
                     {
                         break;
                     }
                 }
-                else if (direction == controller.moveRightBlue)
+                else if (direction == moveRight)
                 {
                     if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
                         transform.Translate(new Vector2(speed, 0));
-                    if (Input.GetKey(controller.moveLeftBlue))
+                    if (Input.GetKey(moveLeft))
                     {
                         break;
                     }
@@ -67,39 +89,6 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public IEnumerator MovePlayerRed(KeyCode direction)
-    {
-        if (!inMovement)
-        {
-            inMovement = true;
-            while (Input.GetKey(direction))
-            {
-                if (direction == KeyCode.None)
-                    break;
-
-                else if (direction == controller.moveLeftRed)
-                {
-                    if (!(transform.position.x <= -levelSpawner.levelHorSize + 1))
-                        transform.Translate(new Vector2(-speed, 0));
-                    if (Input.GetKey(controller.moveRightRed))
-                    {
-                        break;
-                    }
-                }
-                else if (direction == controller.moveRightRed)
-                {
-                    if (!(transform.position.x >= levelSpawner.levelHorSize - 1))
-                        transform.Translate(new Vector2(speed, 0));
-                    if (Input.GetKey(controller.moveLeftRed))
-                    {
-                        break;
-                    }
-                }
-                yield return new WaitForEndOfFrame();
-            }
-            inMovement = false;
-        }
-    }
 
     private void OnCollisionStay2D(Collision2D collision)
     {

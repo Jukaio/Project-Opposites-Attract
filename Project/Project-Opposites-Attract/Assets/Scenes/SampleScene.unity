@@ -5450,14 +5450,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 160278906876032334}
-  moveLeftRed: 97
-  moveRightRed: 100
-  grabRed: 0
-  throwRed: 0
-  moveLeftBlue: 106
-  moveRightBlue: 108
-  grabBlue: 0
-  throwBlue: 0
   playerRed: {fileID: 5013730010986637763}
   playerBlue: {fileID: 4602244216504948867}
   moveBlue: {fileID: 4444693234067045104}
@@ -5599,9 +5591,10 @@ GameObject:
   m_Component:
   - component: {fileID: 139250482690712032}
   - component: {fileID: 7331581412772981966}
+  - component: {fileID: 4602244216504948869}
+  - component: {fileID: 4602244216504948868}
   - component: {fileID: 615584961477688667}
   - component: {fileID: 8817545569017596586}
-  - component: {fileID: 4602244216504948868}
   - component: {fileID: 4444693234067045104}
   m_Layer: 0
   m_Name: Blue Player
@@ -5619,18 +5612,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 4602244216504948867}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53a6716e52947341942344bb42b6a54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSpawner: {fileID: 0}
+  speed: 0
+  normalSpeed: 0
+  disableBlue: 0
+  disableRed: 0
+--- !u!114 &4602244216504948869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602244216504948867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8228af6e099786f4ab6936ed10e13527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 160278906876032334}
-  moveLeftBlue: 0
-  moveRightBlue: 0
-  grabBlue: 0
-  throwBlue: 0
-  playerRed: {fileID: 5013730010986637763}
-  playerBlue: {fileID: 4602244216504948867}
-  moveBlue: {fileID: 0}
-  moveRed: {fileID: 0}
+  mainCamera: {fileID: 0}
+  moveLeft: 106
+  moveRight: 108
+  grabBlue: 117
+  throwBlue: 111
+  playerRed: {fileID: 0}
+  playerBlue: {fileID: 0}
+  movementState: {fileID: 0}
   controller: {fileID: 775502184238923438}
 --- !u!1 &4799603321181878615
 GameObject:
@@ -5720,14 +5729,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 160278906876032334}
-  moveLeftRed: 0
-  moveRightRed: 0
-  grabRed: 0
-  throwRed: 0
-  playerRed: {fileID: 5013730010986637763}
-  playerBlue: {fileID: 4602244216504948867}
-  moveBlue: {fileID: 0}
-  moveRed: {fileID: 0}
+  moveLeft: 97
+  moveRight: 100
+  grabRed: 113
+  throwRed: 101
+  playerRed: {fileID: 0}
+  playerBlue: {fileID: 0}
+  movementState: {fileID: 0}
   controller: {fileID: 775502184238923438}
 --- !u!114 &5104968765609379959
 MonoBehaviour:

@@ -6,8 +6,8 @@ public class InputHandlerRed_base : MonoBehaviour
 {
     public Camera mainCamera;
 
-    public KeyCode moveLeftRed;
-    public KeyCode moveRightRed;
+    public KeyCode moveLeft;
+    public KeyCode moveRight;
 
     public KeyCode grabRed;
     public KeyCode throwRed;
@@ -15,15 +15,13 @@ public class InputHandlerRed_base : MonoBehaviour
     public GameObject playerRed;
     public GameObject playerBlue;
 
-    public Movement moveBlue;
-    public Movement moveRed;
+    public Movement movementState;
 
     public PlayerController controller;
 
     void Awake()
     {
-        moveRed = playerRed.GetComponent<Movement>();
-        moveBlue = playerBlue.GetComponent<Movement>();
+        movementState = GetComponent<Movement>();
 
         SetButtons();
     }
@@ -31,20 +29,20 @@ public class InputHandlerRed_base : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(moveLeftRed) &&
-          Input.GetKey(moveRightRed))
+        if (Input.GetKey(moveLeft) &&
+          Input.GetKey(moveRight))
         {
             //Debug.Log(moveLeftRed + " " + moveRightRed);
-            StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
+            StartCoroutine(movementState.MovePlayer(KeyCode.None));
         }
-        else if (Input.GetKey(moveLeftRed))
+        else if (Input.GetKey(moveLeft))
         {
-            StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
+            StartCoroutine(movementState.MovePlayer(moveLeft));
             // Debug.Log(moveLeftRed);
         }
-        else if (Input.GetKey(moveRightRed))
+        else if (Input.GetKey(moveRight))
         {
-            StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
+            StartCoroutine(movementState.MovePlayer(moveRight));
             //Debug.Log(moveRightRed);
         }
 
@@ -61,8 +59,8 @@ public class InputHandlerRed_base : MonoBehaviour
 
     void SetButtons()
     {
-        moveLeftRed = KeyCode.A;
-        moveRightRed = KeyCode.D;
+        moveLeft = KeyCode.A;
+        moveRight = KeyCode.D;
 
         grabRed = KeyCode.Q;
         throwRed = KeyCode.E;

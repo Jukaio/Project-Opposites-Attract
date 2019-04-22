@@ -6,8 +6,8 @@ public class InputHandlerBlue_base : MonoBehaviour
 {
     public Camera mainCamera;
 
-    public KeyCode moveLeftBlue;
-    public KeyCode moveRightBlue;
+    public KeyCode moveLeft;
+    public KeyCode moveRight;
 
     public KeyCode grabBlue;
     public KeyCode throwBlue;
@@ -15,35 +15,33 @@ public class InputHandlerBlue_base : MonoBehaviour
     public GameObject playerRed;
     public GameObject playerBlue;
 
-    public Movement moveBlue;
-    public Movement moveRed;
+    public Movement movementState;
 
     public PlayerController controller;
 
     void Awake()
     { 
-        moveRed = playerRed.GetComponent<Movement>();
-        moveBlue = playerBlue.GetComponent<Movement>();
+        movementState = GetComponent<Movement>();
 
         SetButtons();
     }
 
     private void Update()
     {
-        if (Input.GetKey(moveLeftBlue) &&
-            Input.GetKey(moveRightBlue))
+        if (Input.GetKey(moveLeft) &&
+            Input.GetKey(moveRight))
         {
-            StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
+            StartCoroutine(movementState.MovePlayer(KeyCode.None));
             //Debug.Log(moveLeftBlue + " " + moveRightBlue);
         }
-        else if (Input.GetKey(moveLeftBlue))
+        else if (Input.GetKey(moveLeft))
         {
-            StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
+            StartCoroutine(movementState.MovePlayer(moveLeft));
             //Debug.Log(moveLeftBlue);
         }
-        else if (Input.GetKey(moveRightBlue))
+        else if (Input.GetKey(moveRight))
         {
-            StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
+            StartCoroutine(movementState.MovePlayer(moveRight));
             //Debug.Log(moveRightBlue);
         }
 
@@ -60,8 +58,8 @@ public class InputHandlerBlue_base : MonoBehaviour
 
     void SetButtons()
     {
-        moveLeftBlue = KeyCode.J;
-        moveRightBlue = KeyCode.L;
+        moveLeft = KeyCode.J;
+        moveRight = KeyCode.L;
 
         grabBlue = KeyCode.U;
         throwBlue = KeyCode.O;
