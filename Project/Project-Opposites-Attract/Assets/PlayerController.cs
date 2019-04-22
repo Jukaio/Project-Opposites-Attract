@@ -38,11 +38,6 @@ public class PlayerController : MonoBehaviour
 
         moveRed = playerRed.GetComponent<Movement>();
         moveBlue = playerBlue.GetComponent<Movement>();
-
-        SetButtons();
-
-        StartCoroutine(PlayerBlueUpdate());
-        StartCoroutine(PlayerRedUpdate());
     }
 
     private void Update()
@@ -56,91 +51,9 @@ public class PlayerController : MonoBehaviour
             DisableMovememnt(playerBlue, false);
             DisableMovememnt(playerRed, false);
         }
-
     }
 
-    void InputHandler(string playerID)
-    {
-        if (playerID == playerRed.name) //red player
-        {
-            if (Input.GetKey(moveLeftRed) &&
-                Input.GetKey(moveRightRed))
-            {
-                Debug.Log(moveLeftRed + " " + moveRightRed + " " + playerID);
-                StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
-            }
-            else if (Input.GetKey(moveLeftRed))
-            {
-                StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
-                Debug.Log(moveLeftRed + " " + playerID);
-            }
-            else if (Input.GetKey(moveRightRed))
-            {
-                StartCoroutine(moveRed.MovePlayerRed(moveRightRed));
-                Debug.Log(moveRightRed + " " + playerID);
-            }
-
-            if (Input.GetKey(grabRed))
-            {
-                StartCoroutine(Grab(grabRed, playerRed, playerBlue));
-                Debug.Log(grabRed + " " + playerID);
-            }
-            else if (Input.GetKey(throwRed))
-            {
-                StartCoroutine(Throw(throwRed, playerBlue));
-            }
-        }
-
-        if (playerID == playerBlue.name) //blue player
-        {
-            if (Input.GetKey(moveLeftBlue) &&
-                Input.GetKey(moveRightBlue))
-            {
-                StartCoroutine(moveBlue.MovePlayerBlue(KeyCode.None));
-                Debug.Log(moveLeftBlue + " " + moveRightBlue + " " + playerID);
-            }
-            else if (Input.GetKey(moveLeftBlue))
-            {
-                StartCoroutine(moveBlue.MovePlayerBlue(moveLeftBlue));
-                Debug.Log(moveLeftBlue + " " + playerID);
-            }
-            else if (Input.GetKey(moveRightBlue))
-            {
-                StartCoroutine(moveBlue.MovePlayerBlue(moveRightBlue));
-                Debug.Log(moveRightBlue + " " + playerID);
-            }
-
-            if (Input.GetKey(grabBlue))
-            {
-                StartCoroutine(Grab(grabBlue, playerBlue, playerRed));
-                Debug.Log(grabBlue + " " + playerID);
-            }
-            else if (Input.GetKey(throwBlue))
-            {
-                StartCoroutine(Throw(throwBlue, playerRed));
-            }
-        }
-    }
-
-    IEnumerator PlayerRedUpdate()
-    {
-        while (true)
-        {
-            InputHandler(playerRed.name);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator PlayerBlueUpdate()
-    {
-        while (true)
-        {
-            InputHandler(playerBlue.name);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    IEnumerator Grab(KeyCode obj1Code, GameObject obj1, GameObject obj2)
+    public IEnumerator Grab(KeyCode obj1Code, GameObject obj1, GameObject obj2)
     { 
         if (!isGrabed && inRange)
         {
@@ -158,7 +71,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator Throw(KeyCode obj1Code, GameObject obj2)
+    public IEnumerator Throw(KeyCode obj1Code, GameObject obj2)
     {
         if (inRange)
         {

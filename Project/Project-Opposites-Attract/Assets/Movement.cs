@@ -105,19 +105,20 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.tag == "ground")
         {
-            print("collides");
             controller.isGrounded = true;
             disableBlue = false;
             disableRed = false;
         }
-        if (collision.gameObject.tag == "blueTile")
+        else if (collision.gameObject.tag == "blueTile")
         {
+            print("blue");
             disableBlue = false;
             disableRed = true;
             controller.isGrounded = true;
         }
         else if (collision.gameObject.tag == "redTile")
         {
+            print("red");
             disableBlue = true;
             disableRed = false;
             controller.isGrounded = true;
