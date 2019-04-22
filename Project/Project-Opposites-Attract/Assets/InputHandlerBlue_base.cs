@@ -20,24 +20,16 @@ public class InputHandlerBlue_base : MonoBehaviour
 
     public PlayerController controller;
 
-    void Start()
+    void Awake()
     { 
         moveRed = playerRed.GetComponent<Movement>();
         moveBlue = playerBlue.GetComponent<Movement>();
 
         SetButtons();
-
-        StartCoroutine(PlayerBlueUpdate());
     }
 
     private void Update()
     {
-       
-    }
-
-    void InputHandler()
-    {
-
         if (Input.GetKey(moveLeftBlue) &&
             Input.GetKey(moveRightBlue))
         {
@@ -63,16 +55,6 @@ public class InputHandlerBlue_base : MonoBehaviour
         else if (Input.GetKey(throwBlue))
         {
             StartCoroutine(controller.Throw(throwBlue, playerRed));
-        }
-
-    }
-
-    IEnumerator PlayerBlueUpdate()
-    {
-        while (true)
-        {
-            InputHandler();
-            yield return new WaitForEndOfFrame();
         }
     }
 

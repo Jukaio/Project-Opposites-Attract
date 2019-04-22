@@ -20,26 +20,19 @@ public class InputHandlerRed_base : MonoBehaviour
 
     public PlayerController controller;
 
-    void Start()
+    void Awake()
     {
         moveRed = playerRed.GetComponent<Movement>();
         moveBlue = playerBlue.GetComponent<Movement>();
 
         SetButtons();
-
-        StartCoroutine(PlayerRedUpdate());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    void InputHandler()
-    {
         if (Input.GetKey(moveLeftRed) &&
-            Input.GetKey(moveRightRed))
+          Input.GetKey(moveRightRed))
         {
             //Debug.Log(moveLeftRed + " " + moveRightRed);
             StartCoroutine(moveBlue.MovePlayerRed(KeyCode.None));
@@ -47,7 +40,7 @@ public class InputHandlerRed_base : MonoBehaviour
         else if (Input.GetKey(moveLeftRed))
         {
             StartCoroutine(moveRed.MovePlayerRed(moveLeftRed));
-           // Debug.Log(moveLeftRed);
+            // Debug.Log(moveLeftRed);
         }
         else if (Input.GetKey(moveRightRed))
         {
@@ -63,15 +56,6 @@ public class InputHandlerRed_base : MonoBehaviour
         else if (Input.GetKey(throwRed))
         {
             StartCoroutine(controller.Throw(throwRed, playerBlue));
-        }
-    }
-
-    IEnumerator PlayerRedUpdate()
-    {
-        while (true)
-        {
-            InputHandler();
-            yield return new WaitForEndOfFrame();
         }
     }
 

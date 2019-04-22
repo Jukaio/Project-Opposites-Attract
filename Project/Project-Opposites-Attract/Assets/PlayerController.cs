@@ -7,18 +7,6 @@ public class PlayerController : MonoBehaviour
 {
     public Camera mainCamera;
 
-    public KeyCode moveLeftRed;
-    public KeyCode moveRightRed;
-
-    public KeyCode grabRed;
-    public KeyCode throwRed;
-
-    public KeyCode moveLeftBlue;
-    public KeyCode moveRightBlue;
-
-    public KeyCode grabBlue;
-    public KeyCode throwBlue;
-
     public GameObject playerRed;
     public GameObject playerBlue;
 
@@ -95,20 +83,5 @@ public class PlayerController : MonoBehaviour
             obj.GetComponent<Movement>().speed = 0;
         else
             obj.GetComponent<Movement>().speed = obj.GetComponent<Movement>().normalSpeed;
-    }
-
-    void SetButtons()
-    {
-        moveLeftRed = KeyCode.A;
-        moveRightRed = KeyCode.D;
-
-        grabRed = KeyCode.Q;
-        throwRed = KeyCode.E;
-
-        moveLeftBlue = KeyCode.J;
-        moveRightBlue = KeyCode.L;
-
-        grabBlue = KeyCode.U;
-        throwBlue = KeyCode.O;
     }
 }
