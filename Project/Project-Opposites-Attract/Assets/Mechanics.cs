@@ -22,6 +22,17 @@ public class Mechanics : MonoBehaviour
 
     }
 
+    public void MoveLeft()
+    {
+        transform.Translate(new Vector2(-0.5f, 0));
+    }
+
+    public void MoveRight()
+    {
+        transform.Translate(new Vector2(0.5f, 0));
+    }
+
+
     public void Grab(KeyCode obj1Code, GameObject obj1, GameObject obj2)
     {
         if (!isGrabed && inRange)
