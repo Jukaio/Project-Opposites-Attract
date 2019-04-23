@@ -5,7 +5,6 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     Transform parent;
-    PlayerController controller;
 
     KeyCode moveLeft;
     KeyCode moveRight;
@@ -23,8 +22,7 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         parent = transform.parent;
-        controller = parent.GetComponent<PlayerController>();
-
+        
         for (int i = 0; i < transform.parent.parent.childCount; i++)
         {
             if (transform.parent.parent.GetChild(i).GetComponent<SpawnLevel>() != null)
@@ -89,33 +87,4 @@ public class Movement : MonoBehaviour
     }
 
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "ground")
-        {
-            controller.isGrounded = true;
-            disableBlue = false;
-            disableRed = false;
-        }
-        else if (collision.gameObject.tag == "blueTile")
-        {
-            print("blue");
-            disableBlue = false;
-            disableRed = true;
-            controller.isGrounded = true;
-        }
-        else if (collision.gameObject.tag == "redTile")
-        {
-            print("red");
-            disableBlue = true;
-            disableRed = false;
-            controller.isGrounded = true;
-        }
-        else
-        {
-            disableBlue = false;
-            disableRed = false;
-            controller.isGrounded = true;
-        }
-    }
 }

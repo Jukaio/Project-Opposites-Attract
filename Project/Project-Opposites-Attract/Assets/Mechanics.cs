@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Mechanics : MonoBehaviour
 {
-    //grab shit 
-    public bool inRange;
-    public bool isGrabed;
-    public bool isGrounded;
-    public float checkDist;
+    public bool grounded;
 
     // Start is called before the first frame update
     void Start()
@@ -24,44 +20,43 @@ public class Mechanics : MonoBehaviour
 
     public void MoveLeft()
     {
-        transform.Translate(new Vector2(-0.5f, 0));
+        transform.Translate(new Vector2(-0.1f, 0f));
     }
 
     public void MoveRight()
     {
-        transform.Translate(new Vector2(0.5f, 0));
+        transform.Translate(new Vector2(0.1f, 0f));
     }
 
-
-    public void Grab(KeyCode obj1Code, GameObject obj1, GameObject obj2)
+    public void GrabAttach(GameObject obj1, GameObject obj2)
     {
-        if (!isGrabed && inRange)
-        {
-            isGrabed = true;
-            if (Input.GetKey(obj1Code))
-            {
-                obj2.transform.parent = obj1.transform;
-            }
-            isGrabed = false;
-            obj1.transform.DetachChildren();
-            obj2.transform.parent = transform;
-        }
+        obj2.transform.parent = obj1.transform;
     }
 
-    public void Throw(KeyCode obj1Code, GameObject obj2)
+    public void GrabDeattach(GameObject obj1, GameObject obj2)
     {
-        if (inRange)
-        {
-            if (Input.GetKey(obj1Code) && isGrounded)
-            {
-                obj2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
-                isGrounded = false;
-            }
-        }
+        obj2.transform.parent = obj1.transform.parent;
     }
 
-    bool InRange(GameObject obj1, GameObject obj2, float dist) //just range
+    public void Throw(GameObject obj2)
+    {
+        grounded = false;
+        obj2.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10f), ForceMode2D.Impulse);
+        //obj2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
+    }
+
+    public bool InRange(GameObject obj1, GameObject obj2, float dist) //just range
     {
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= dist;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (gameObject.tag == "ground")
+        {
+            print("grounds");
+            grounded = true;
+        }
+    }
+
 }

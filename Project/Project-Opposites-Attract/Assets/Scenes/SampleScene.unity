@@ -942,7 +942,7 @@ TilemapCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -2380,70 +2380,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2004759385
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2004759387}
-  - component: {fileID: 2004759386}
-  - component: {fileID: 2004759388}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2004759386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004759385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  redPlayer: {fileID: 0}
-  bluePlayer: {fileID: 0}
-  grounded: 1
---- !u!4 &2004759387
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004759385}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2004759388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004759385}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4399c890d1dcd214797c38ab04e361a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inRange: 0
-  isGrabed: 0
-  isGrounded: 0
-  checkDist: 0
 --- !u!4 &20066674042949483
 Transform:
   m_ObjectHideFlags: 0
@@ -2554,27 +2490,6 @@ Transform:
   m_Father: {fileID: 3627458613659872299}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &775502184238923438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5499830648321827357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75b68c626f6221341a928b40bdbfd42f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 160278906876032334}
-  playerRed: {fileID: 5013730010986637763}
-  playerBlue: {fileID: 4602244216504948867}
-  moveBlue: {fileID: 4444693234067045104}
-  moveRed: {fileID: 5104968765609379959}
-  inRange: 0
-  isGrabed: 0
-  isGrounded: 0
-  checkDist: 2.5
 --- !u!4 &897184159091162576
 Transform:
   m_ObjectHideFlags: 0
@@ -2681,23 +2596,6 @@ Transform:
   m_Father: {fileID: 1057189998}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4444693234067045104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4602244216504948867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53a6716e52947341942344bb42b6a54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelSpawner: {fileID: 0}
-  speed: 0
-  normalSpeed: 0
-  disableBlue: 0
-  disableRed: 0
 --- !u!1 &4602244216504948867
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,11 +2606,10 @@ GameObject:
   m_Component:
   - component: {fileID: 139250482690712032}
   - component: {fileID: 7331581412772981966}
-  - component: {fileID: 4602244216504948869}
-  - component: {fileID: 4602244216504948868}
   - component: {fileID: 615584961477688667}
   - component: {fileID: 8817545569017596586}
-  - component: {fileID: 4444693234067045104}
+  - component: {fileID: 4602244216504948869}
+  - component: {fileID: 4602244216504948868}
   m_Layer: 0
   m_Name: Blue Player
   m_TagString: Untagged
@@ -2729,14 +2626,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4602244216504948867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53a6716e52947341942344bb42b6a54, type: 3}
+  m_Script: {fileID: 11500000, guid: 4399c890d1dcd214797c38ab04e361a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSpawner: {fileID: 0}
-  speed: 0
-  normalSpeed: 0
-  disableBlue: 0
-  disableRed: 0
+  grounded: 0
 --- !u!114 &4602244216504948869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2746,17 +2639,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 4602244216504948867}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8228af6e099786f4ab6936ed10e13527, type: 3}
+  m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  otherPlayer: {fileID: 5013730010986637763}
   moveLeft: 106
   moveRight: 108
-  grabBlue: 117
-  throwBlue: 111
-  playerRed: {fileID: 0}
-  playerBlue: {fileID: 0}
-  movementState: {fileID: 0}
-  controller: {fileID: 775502184238923438}
+  grab: 117
+  throws: 111
+  grounded: 0
 --- !u!1 &4799603321181878615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2823,8 +2715,8 @@ GameObject:
   - component: {fileID: 9132888002738193068}
   - component: {fileID: 2475103395871763931}
   - component: {fileID: 7291024662289358127}
+  - component: {fileID: 5013730010986637765}
   - component: {fileID: 5013730010986637764}
-  - component: {fileID: 5104968765609379959}
   m_Layer: 0
   m_Name: Red Player
   m_TagString: Untagged
@@ -2841,19 +2733,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5013730010986637763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4818bb85b280204b96db0a3a08499bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4399c890d1dcd214797c38ab04e361a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 160278906876032334}
-  moveLeft: 97
-  moveRight: 100
-  grabRed: 113
-  throwRed: 101
-  playerRed: {fileID: 0}
-  playerBlue: {fileID: 0}
-  movementState: {fileID: 0}
-  controller: {fileID: 775502184238923438}
---- !u!114 &5104968765609379959
+  grounded: 1
+--- !u!114 &5013730010986637765
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2862,14 +2746,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 5013730010986637763}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b53a6716e52947341942344bb42b6a54, type: 3}
+  m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelSpawner: {fileID: 0}
-  speed: 0
-  normalSpeed: 0
-  disableBlue: 0
-  disableRed: 0
+  currentState: 0
+  otherPlayer: {fileID: 4602244216504948867}
+  moveLeft: 97
+  moveRight: 100
+  grab: 113
+  throws: 101
+  grounded: 1
 --- !u!1 &5499830648321827357
 GameObject:
   m_ObjectHideFlags: 0
@@ -2880,7 +2766,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3627458613659872299}
   - component: {fileID: 2607492813785631997}
-  - component: {fileID: 775502184238923438}
   m_Layer: 0
   m_Name: Parent Player
   m_TagString: Untagged

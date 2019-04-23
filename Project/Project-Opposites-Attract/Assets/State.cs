@@ -16,21 +16,24 @@ public class State : MonoBehaviour
     }
     public States currentState;
 
-    public GameObject redPlayer;
-    public GameObject bluePlayer;
+    public GameObject otherPlayer;
 
     Mechanics mechanics;
+    Mechanics otherMechanics;
 
-    KeyCode moveLeft = KeyCode.A;
-    KeyCode moveRight = KeyCode.D;
-    KeyCode grab = KeyCode.Q;
-    KeyCode throws = KeyCode.E;
+    float rangeDist = 3;
+
+    public KeyCode moveLeft;// = KeyCode.A;
+    public KeyCode moveRight; // = KeyCode.D;
+    public KeyCode grab; // = KeyCode.Q;
+    public KeyCode throws; // = KeyCode.E;
 
     public bool grounded;
 
     void Start()
     {
         mechanics = GetComponent<Mechanics>();
+        otherMechanics = otherPlayer.GetComponent<Mechanics>();
     }
 
     void Update()
@@ -57,19 +60,25 @@ public class State : MonoBehaviour
                 }
                 else if (Input.GetKey(grab))
                 {
-                    print("idle-grab");
-                    currentState = States.GRAB;
+                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
+                    {
+                        mechanics.GrabAttach(gameObject, otherPlayer);
+                        currentState = States.GRAB;
+                    }
                 }
                 else if (Input.GetKey(throws))
                 {
-                    print("idle-throw");
-                    currentState = States.THROW;
+                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherMechanics.grounded)
+                    {
+                        currentState = States.THROW;
+                    } 
                 }
                 else if (!grounded)
                 {
                     print("in air");
                 }
                 break;
+
             case States.MOVE_LEFT:
                 mechanics.MoveLeft();
                 if (!Input.GetKey(moveLeft))
@@ -77,11 +86,12 @@ public class State : MonoBehaviour
                     print("not move");
                     currentState = States.IDLE;
                 }
-                else if(Input.GetKey(moveLeft))
+                else if(Input.GetKey(moveRight))
                 {
                     currentState = States.IDLE;
                 }
                 break;
+
             case States.MOVE_RIGHT:
                 mechanics.MoveRight();
                 if (!Input.GetKey(moveRight))
@@ -89,14 +99,31 @@ public class State : MonoBehaviour
                     print("not move");
                     currentState = States.IDLE;
                 }
-                else if (Input.GetKey(moveRight))
+                else if (Input.GetKey(moveLeft))
                 {
                     currentState = States.IDLE;
                 }
                 break;
+
             case States.GRAB:
+                mechanics.GrabAttach(gameObject, otherPlayer);
+                if(!Input.GetKey(grab))
+                {
+                    mechanics.GrabDeattach(gameObject, otherPlayer);
+                    currentState = States.IDLE;
+                }
+                else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+                {
+                    mechanics.MoveLeft();
+                }
+                else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+                {
+                    mechanics.MoveRight();
+                }
                 break;
             case States.THROW:
+                mechanics.Throw(otherPlayer);
+                currentState = States.IDLE;
                 break;
             case States.IN_AIR:
                 break;
