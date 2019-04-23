@@ -12,11 +12,13 @@ public class State : MonoBehaviour
         GRAB,
         IN_GRAB,
         THROW,
-        IN_AIR
+        IN_THROW
     }
     public States currentState;
+    
 
     public GameObject otherPlayer;
+    public State otherState;
 
     Mechanics mechanics;
     Mechanics otherMechanics;
@@ -34,6 +36,8 @@ public class State : MonoBehaviour
     {
         mechanics = GetComponent<Mechanics>();
         otherMechanics = otherPlayer.GetComponent<Mechanics>();
+
+        otherState = otherPlayer.GetComponent<State>();
     }
 
     void Update()
@@ -46,36 +50,33 @@ public class State : MonoBehaviour
         switch (currentState)
         {
             case States.IDLE:
-                if (Input.GetKey(moveLeft) && Input.GetKey(moveRight))
+                if(!grounded)
+                {
+                    currentState = States.IN_THROW;
+                }
+                else if (Input.GetKey(moveLeft) && Input.GetKey(moveRight))
                     break;
                 else if (Input.GetKey(moveLeft))
                 {
-                    mechanics.MoveLeft();
                     currentState = States.MOVE_LEFT;
                 }
                 else if (Input.GetKey(moveRight))
                 {
-                    mechanics.MoveRight();
                     currentState = States.MOVE_RIGHT;
                 }
                 else if (Input.GetKey(grab))
                 {
                     if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
                     {
-                        mechanics.GrabAttach(gameObject, otherPlayer);
                         currentState = States.GRAB;
                     }
                 }
-                else if (Input.GetKey(throws))
+                else if (Input.GetKeyDown(throws))
                 {
-                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherMechanics.grounded)
+                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
                     {
                         currentState = States.THROW;
                     } 
-                }
-                else if (!grounded)
-                {
-                    print("in air");
                 }
                 break;
 
@@ -83,7 +84,6 @@ public class State : MonoBehaviour
                 mechanics.MoveLeft();
                 if (!Input.GetKey(moveLeft))
                 {
-                    print("not move");
                     currentState = States.IDLE;
                 }
                 else if(Input.GetKey(moveRight))
@@ -96,7 +96,6 @@ public class State : MonoBehaviour
                 mechanics.MoveRight();
                 if (!Input.GetKey(moveRight))
                 {
-                    print("not move");
                     currentState = States.IDLE;
                 }
                 else if (Input.GetKey(moveLeft))
@@ -121,15 +120,43 @@ public class State : MonoBehaviour
                     mechanics.MoveRight();
                 }
                 break;
+
             case States.THROW:
                 mechanics.Throw(otherPlayer);
+                otherState.grounded = false;
                 currentState = States.IDLE;
                 break;
-            case States.IN_AIR:
+
+            case States.IN_THROW:
+                if(grounded)
+                {
+                    currentState = States.IDLE;
+                }
+                else if (Input.GetKey(moveLeft) && Input.GetKey(moveRight))
+                    break;
+                else if (Input.GetKey(moveLeft))
+                {
+                    mechanics.MoveLeft();
+                }
+                else if (Input.GetKey(moveRight))
+                {
+                    mechanics.MoveRight();
+                }
                 break;
+
             default:
                 currentState = States.IDLE;
                 break;
+        }
+    }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "ground")
+        {
+            print("grounds");
+            grounded = true;
         }
     }
 }

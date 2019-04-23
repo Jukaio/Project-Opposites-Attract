@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Mechanics : MonoBehaviour
 {
-    public bool grounded;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +38,6 @@ public class Mechanics : MonoBehaviour
 
     public void Throw(GameObject obj2)
     {
-        grounded = false;
         obj2.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 10f), ForceMode2D.Impulse);
         //obj2.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 7f);
     }
@@ -50,13 +47,9 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= dist;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (gameObject.tag == "ground")
-        {
-            print("grounds");
-            grounded = true;
-        }
-    }
+   
+
+    
+   
 
 }
