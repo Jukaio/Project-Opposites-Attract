@@ -9,13 +9,20 @@ public class State : MonoBehaviour
         IDLE,
         MOVE_LEFT,
         MOVE_RIGHT,
-        NO_MOVE,
         GRAB,
         IN_GRAB,
         THROW,
         IN_THROW
     }
     public States currentState;
+
+    public enum MoveStates
+    {
+        CAN_MOVE,
+        CAN_NOT_MOVE
+    }
+    public MoveStates currentMoveState;
+
     
 
     public GameObject otherPlayer;
@@ -49,76 +56,87 @@ public class State : MonoBehaviour
 
     void InputHandler()
     {
-        switch (currentState)
+        switch (currentMoveState)
         {
-            case States.IDLE:
-                State_IDLE();
-                break;
+            case MoveStates.CAN_MOVE:
+                switch (currentState)
+                {
+                    case States.IDLE:
+                        State_IDLE();
+                        break;
 
-            case States.MOVE_LEFT:
-                mechanics.MoveLeft();
-                if (!Input.GetKey(moveLeft))
-                {
-                    currentState = States.IDLE;
-                }
-                else if(Input.GetKey(moveRight))
-                {
-                    currentState = States.IDLE;
+                    case States.MOVE_LEFT:
+                        mechanics.MoveLeft();
+                        if (!Input.GetKey(moveLeft))
+                        {
+                            currentState = States.IDLE;
+                        }
+                        else if (Input.GetKey(moveRight))
+                        {
+                            currentState = States.IDLE;
+                        }
+                        break;
+
+                    case States.MOVE_RIGHT:
+                        mechanics.MoveRight();
+                        if (!Input.GetKey(moveRight))
+                        {
+                            currentState = States.IDLE;
+                        }
+                        else if (Input.GetKey(moveLeft))
+                        {
+                            currentState = States.IDLE;
+                        }
+                        break;
+
+                    case States.GRAB:
+                        mechanics.GrabAttach(gameObject, otherPlayer);
+                        if (!Input.GetKey(grab))
+                        {
+                            mechanics.GrabDeattach(gameObject, otherPlayer);
+                            currentState = States.IDLE;
+                        }
+                        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+                        {
+                            mechanics.MoveLeft();
+                        }
+                        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+                        {
+                            mechanics.MoveRight();
+                        }
+                        break;
+
+                    case States.THROW:
+                        mechanics.Throw(otherPlayer);
+                        currentState = States.IDLE;
+                        break;
+
+                    case States.IN_THROW:
+                        if (grounded)
+                        {
+                            currentState = States.IDLE;
+                        }
+                        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+                        {
+                            mechanics.MoveLeft();
+                        }
+                        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+                        {
+                            mechanics.MoveRight();
+                        }
+                        break;
+
+                    case States.IN_GRAB:
+                        if (otherState.currentState != States.GRAB)
+                            mechanics.GrabDeattach(gameObject, otherPlayer);
+                        break;
+
+                    default:
+                        currentState = States.IDLE;
+                        break;
                 }
                 break;
-
-            case States.MOVE_RIGHT:
-                mechanics.MoveRight();
-                if (!Input.GetKey(moveRight))
-                {
-                    currentState = States.IDLE;
-                }
-                else if (Input.GetKey(moveLeft))
-                {
-                    currentState = States.IDLE;
-                }
-                break;
-
-            case States.GRAB:
-                mechanics.GrabAttach(gameObject, otherPlayer);
-                if(!Input.GetKey(grab))
-                {
-                    mechanics.GrabDeattach(gameObject, otherPlayer);
-                    currentState = States.IDLE;
-                }
-                else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
-                {
-                    mechanics.MoveLeft();
-                }
-                else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
-                {
-                    mechanics.MoveRight();
-                }
-                break;
-
-            case States.THROW:
-                State_THROW();
-                currentState = States.IDLE;
-                break;
-
-            case States.IN_THROW:
-                if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
-                {
-                    mechanics.MoveLeft();
-                }
-                else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
-                {
-                    mechanics.MoveRight();
-                }
-                break;
-
-            case States.NO_MOVE:
-                if(Input.GetKeyDown(throws))
-                    State_THROW();
-                break;
-
-            default:
-                currentState = States.IDLE;
+            case MoveStates.CAN_NOT_MOVE:
                 break;
         }
     }
@@ -138,21 +156,22 @@ public class State : MonoBehaviour
             if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
             {
                 currentState = States.GRAB;
+                otherState.currentState = States.IN_GRAB;
             }
         }
         else if (Input.GetKeyDown(throws))
         {
-            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && (otherState.currentState == States.IDLE || otherState.currentState == States.NO_MOVE))
+            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
             {
+                otherState.grounded = false;
+                otherState.currentState = States.IN_THROW;
                 currentState = States.THROW;
             }
         }
     }
-
     void State_THROW()
     {
         mechanics.Throw(otherPlayer);
-        otherState.currentState = States.IN_THROW;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -160,24 +179,28 @@ public class State : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             print("grounds");
-            currentState = States.IDLE;
+            grounded = true;
+            currentMoveState = MoveStates.CAN_MOVE;
         }
         else if (collision.gameObject.tag == "blueTile")
         {
             if (gameObject.tag == "redPlayer")
-                currentState = States.NO_MOVE;
+                currentMoveState = MoveStates.CAN_NOT_MOVE;
             else if (gameObject.tag == "bluePlayer")
-                currentState = States.IDLE;
-
+                currentMoveState = MoveStates.CAN_MOVE;
+            grounded = true;
         }
         else if (collision.gameObject.tag == "redTile")
         {
-            if (gameObject.tag == "redPlayer")
-                currentState = States.IDLE;
-            else if (gameObject.tag == "bluePlayer")
-                currentState = States.NO_MOVE;
+            if (gameObject.tag == "bluePlayer")
+                currentMoveState = MoveStates.CAN_NOT_MOVE;
+            else if (gameObject.tag == "redPlayer")
+                currentMoveState = MoveStates.CAN_MOVE;
+            grounded = true;
         }
-
-
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        currentMoveState = MoveStates.CAN_MOVE;
     }
 }
