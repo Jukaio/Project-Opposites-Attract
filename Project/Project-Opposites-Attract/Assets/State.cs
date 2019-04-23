@@ -30,6 +30,7 @@ public class State : MonoBehaviour
     public KeyCode grab; // = KeyCode.Q;
     public KeyCode throws; // = KeyCode.E;
 
+
     public bool grounded;
 
     void Start()
@@ -42,7 +43,7 @@ public class State : MonoBehaviour
 
     void Update()
     {
-        InputHandler();
+       InputHandler();
     }
 
     void InputHandler()
@@ -50,34 +51,7 @@ public class State : MonoBehaviour
         switch (currentState)
         {
             case States.IDLE:
-                if(!grounded)
-                {
-                    currentState = States.IN_THROW;
-                }
-                else if (Input.GetKey(moveLeft) && Input.GetKey(moveRight))
-                    break;
-                else if (Input.GetKey(moveLeft))
-                {
-                    currentState = States.MOVE_LEFT;
-                }
-                else if (Input.GetKey(moveRight))
-                {
-                    currentState = States.MOVE_RIGHT;
-                }
-                else if (Input.GetKey(grab))
-                {
-                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
-                    {
-                        currentState = States.GRAB;
-                    }
-                }
-                else if (Input.GetKeyDown(throws))
-                {
-                    if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
-                    {
-                        currentState = States.THROW;
-                    } 
-                }
+                State_IDLE();
                 break;
 
             case States.MOVE_LEFT:
@@ -132,13 +106,11 @@ public class State : MonoBehaviour
                 {
                     currentState = States.IDLE;
                 }
-                else if (Input.GetKey(moveLeft) && Input.GetKey(moveRight))
-                    break;
-                else if (Input.GetKey(moveLeft))
+                else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
                 {
                     mechanics.MoveLeft();
                 }
-                else if (Input.GetKey(moveRight))
+                else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
                 {
                     mechanics.MoveRight();
                 }
@@ -147,6 +119,36 @@ public class State : MonoBehaviour
             default:
                 currentState = States.IDLE;
                 break;
+        }
+    }
+
+    void State_IDLE()
+    {
+        if (!grounded)
+        {
+            currentState = States.IN_THROW;
+        }
+        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        {
+            currentState = States.MOVE_LEFT;
+        }
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        {
+            currentState = States.MOVE_RIGHT;
+        }
+        else if (Input.GetKey(grab))
+        {
+            if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
+            {
+                currentState = States.GRAB;
+            }
+        }
+        else if (Input.GetKeyDown(throws))
+        {
+            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
+            {
+                currentState = States.THROW;
+            }
         }
     }
 
