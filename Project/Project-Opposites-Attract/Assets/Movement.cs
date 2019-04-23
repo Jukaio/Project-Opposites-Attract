@@ -54,7 +54,6 @@ public class Movement : MonoBehaviour
         inMovement = false;
     }
 
-
     public IEnumerator MovePlayer(KeyCode direction)
     {
         if (!inMovement)

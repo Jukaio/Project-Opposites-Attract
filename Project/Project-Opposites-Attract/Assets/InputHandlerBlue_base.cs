@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class InputHandlerBlue_base : MonoBehaviour
 {
-    public Camera mainCamera;
-
     public KeyCode moveLeft;
     public KeyCode moveRight;
 
