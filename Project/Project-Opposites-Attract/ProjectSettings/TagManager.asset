@@ -7,6 +7,8 @@ TagManager:
   - ground
   - redTile
   - blueTile
+  - redPlayer
+  - bluePlayer
   layers:
   - Default
   - TransparentFX

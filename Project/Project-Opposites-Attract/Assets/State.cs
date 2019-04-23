@@ -9,6 +9,7 @@ public class State : MonoBehaviour
         IDLE,
         MOVE_LEFT,
         MOVE_RIGHT,
+        NO_MOVE,
         GRAB,
         IN_GRAB,
         THROW,
@@ -30,8 +31,8 @@ public class State : MonoBehaviour
     public KeyCode grab; // = KeyCode.Q;
     public KeyCode throws; // = KeyCode.E;
 
-
     public bool grounded;
+    public bool canMove;
 
     void Start()
     {
@@ -152,13 +153,31 @@ public class State : MonoBehaviour
         }
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ground")
         {
             print("grounds");
             grounded = true;
+            canMove = true;
         }
+        else if (collision.gameObject.tag == "blueTile")
+        {
+            if (gameObject.tag == "redPlayer")
+                canMove = false;
+            else if (gameObject.tag == "bluePlayer")
+                canMove = true;
+            grounded = true;
+        }
+        else if (collision.gameObject.tag == "redTile")
+        {
+            if (gameObject.tag == "redPlayer")
+                canMove = true;
+            else if (gameObject.tag == "bluePlayer")
+                canMove = false;
+            grounded = true;
+        }
+        
+        
     }
 }

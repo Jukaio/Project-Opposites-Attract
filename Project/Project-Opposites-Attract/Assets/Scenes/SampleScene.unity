@@ -2656,7 +2656,7 @@ GameObject:
   - component: {fileID: 4602244216504948868}
   m_Layer: 0
   m_Name: Blue Player
-  m_TagString: Untagged
+  m_TagString: bluePlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2693,6 +2693,7 @@ MonoBehaviour:
   grab: 117
   throws: 111
   grounded: 0
+  canMove: 0
 --- !u!1 &4799603321181878615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2763,7 +2764,7 @@ GameObject:
   - component: {fileID: 5013730010986637764}
   m_Layer: 0
   m_Name: Red Player
-  m_TagString: Untagged
+  m_TagString: redPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2800,6 +2801,7 @@ MonoBehaviour:
   grab: 113
   throws: 101
   grounded: 1
+  canMove: 0
 --- !u!1 &5499830648321827357
 GameObject:
   m_ObjectHideFlags: 0
