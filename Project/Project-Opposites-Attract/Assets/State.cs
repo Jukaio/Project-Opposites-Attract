@@ -97,17 +97,12 @@ public class State : MonoBehaviour
                 break;
 
             case States.THROW:
-                mechanics.Throw(otherPlayer);
-                otherState.grounded = false;
+                State_THROW();
                 currentState = States.IDLE;
                 break;
 
             case States.IN_THROW:
-                if(grounded)
-                {
-                    currentState = States.IDLE;
-                }
-                else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+                if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
                 {
                     mechanics.MoveLeft();
                 }
@@ -115,6 +110,11 @@ public class State : MonoBehaviour
                 {
                     mechanics.MoveRight();
                 }
+                break;
+
+            case States.NO_MOVE:
+                if(Input.GetKeyDown(throws))
+                    State_THROW();
                 break;
 
             default:
@@ -125,11 +125,7 @@ public class State : MonoBehaviour
 
     void State_IDLE()
     {
-        if (!grounded)
-        {
-            currentState = States.IN_THROW;
-        }
-        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
         {
             currentState = States.MOVE_LEFT;
         }
@@ -146,11 +142,17 @@ public class State : MonoBehaviour
         }
         else if (Input.GetKeyDown(throws))
         {
-            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
+            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && (otherState.currentState == States.IDLE || otherState.currentState == States.NO_MOVE))
             {
                 currentState = States.THROW;
             }
         }
+    }
+
+    void State_THROW()
+    {
+        mechanics.Throw(otherPlayer);
+        otherState.currentState = States.IN_THROW;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -158,26 +160,24 @@ public class State : MonoBehaviour
         if (collision.gameObject.tag == "ground")
         {
             print("grounds");
-            grounded = true;
-            canMove = true;
+            currentState = States.IDLE;
         }
         else if (collision.gameObject.tag == "blueTile")
         {
             if (gameObject.tag == "redPlayer")
-                canMove = false;
+                currentState = States.NO_MOVE;
             else if (gameObject.tag == "bluePlayer")
-                canMove = true;
-            grounded = true;
+                currentState = States.IDLE;
+
         }
         else if (collision.gameObject.tag == "redTile")
         {
             if (gameObject.tag == "redPlayer")
-                canMove = true;
+                currentState = States.IDLE;
             else if (gameObject.tag == "bluePlayer")
-                canMove = false;
-            grounded = true;
+                currentState = States.NO_MOVE;
         }
-        
-        
+
+
     }
 }
