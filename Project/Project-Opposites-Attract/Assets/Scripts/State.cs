@@ -176,13 +176,13 @@ public class State : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.CompareTag("ground"))
         {
             print("grounds");
             grounded = true;
             currentMoveState = MoveStates.CAN_MOVE;
         }
-        else if (collision.gameObject.tag == "blueTile")
+        else if (collision.gameObject.CompareTag("blueTile"))
         {
             if (gameObject.tag == "redPlayer")
                 currentMoveState = MoveStates.CAN_NOT_MOVE;
@@ -190,7 +190,7 @@ public class State : MonoBehaviour
                 currentMoveState = MoveStates.CAN_MOVE;
             grounded = true;
         }
-        else if (collision.gameObject.tag == "redTile")
+        else if (collision.gameObject.CompareTag("redTile"))
         {
             if (gameObject.tag == "bluePlayer")
                 currentMoveState = MoveStates.CAN_NOT_MOVE;

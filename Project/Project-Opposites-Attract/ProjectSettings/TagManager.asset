@@ -9,6 +9,7 @@ TagManager:
   - blueTile
   - redPlayer
   - bluePlayer
+  - portal
   layers:
   - Default
   - TransparentFX
