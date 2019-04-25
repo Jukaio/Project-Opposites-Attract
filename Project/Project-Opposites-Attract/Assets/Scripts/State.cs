@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class State : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class State : MonoBehaviour
     }
     public MoveStates currentMoveState;
 
-    
+
 
     public GameObject otherPlayer;
     public State otherState;
@@ -51,94 +52,64 @@ public class State : MonoBehaviour
 
     void Update()
     {
-       InputHandler();
+        MoveStatesHandler();
     }
 
-    void InputHandler()
+    void MoveStatesHandler()
     {
         switch (currentMoveState)
         {
             case MoveStates.CAN_MOVE:
-                switch (currentState)
-                {
-                    case States.IDLE:
-                        State_IDLE();
-                        break;
+                CanMoveInputHandler();
 
-                    case States.MOVE_LEFT:
-                        mechanics.MoveLeft();
-                        if (!Input.GetKey(moveLeft))
-                        {
-                            currentState = States.IDLE;
-                        }
-                        else if (Input.GetKey(moveRight))
-                        {
-                            currentState = States.IDLE;
-                        }
-                        break;
-
-                    case States.MOVE_RIGHT:
-                        mechanics.MoveRight();
-                        if (!Input.GetKey(moveRight))
-                        {
-                            currentState = States.IDLE;
-                        }
-                        else if (Input.GetKey(moveLeft))
-                        {
-                            currentState = States.IDLE;
-                        }
-                        break;
-
-                    case States.GRAB:
-                        mechanics.GrabAttach(gameObject, otherPlayer);
-                        if (!Input.GetKey(grab))
-                        {
-                            mechanics.GrabDeattach(gameObject, otherPlayer);
-                            currentState = States.IDLE;
-                        }
-                        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
-                        {
-                            mechanics.MoveLeft();
-                        }
-                        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
-                        {
-                            mechanics.MoveRight();
-                        }
-                        break;
-
-                    case States.THROW:
-                        mechanics.Throw(otherPlayer);
-                        currentState = States.IDLE;
-                        break;
-
-                    case States.IN_THROW:
-                        if (grounded)
-                        {
-                            currentState = States.IDLE;
-                        }
-                        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
-                        {
-                            mechanics.MoveLeft();
-                        }
-                        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
-                        {
-                            mechanics.MoveRight();
-                        }
-                        break;
-
-                    case States.IN_GRAB:
-                        if (otherState.currentState != States.GRAB)
-                            mechanics.GrabDeattach(gameObject, otherPlayer);
-                        break;
-
-                    default:
-                        currentState = States.IDLE;
-                        break;
-                }
                 break;
+
             case MoveStates.CAN_NOT_MOVE:
+                CanNoteMoveInputHandler();
                 break;
         }
+    }
+
+    void CanMoveInputHandler()
+    {
+        switch (currentState)
+        {
+            case States.IDLE:
+                State_IDLE();
+                break;
+
+            case States.MOVE_LEFT:
+                State_MOVELEFT();
+                break;
+
+            case States.MOVE_RIGHT:
+                State_MOVERIGHT();
+                break;
+
+            case States.GRAB:
+                State_GRAB();
+                break;
+
+            case States.THROW:
+                State_THROW();
+                break;
+
+            case States.IN_THROW:
+                State_INTHROW();
+                break;
+
+            case States.IN_GRAB:
+                State_INGRAB();
+                break;
+
+            default:
+                currentState = States.IDLE;
+                break;
+        }
+    }
+    void CanNoteMoveInputHandler()
+    {
+
     }
 
     void State_IDLE()
@@ -172,13 +143,81 @@ public class State : MonoBehaviour
     void State_THROW()
     {
         mechanics.Throw(otherPlayer);
+        currentState = States.IDLE;
     }
+    void State_INTHROW()
+    {
+        if (grounded)
+        {
+            currentState = States.IDLE;
+        }
+        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        {
+            mechanics.MoveLeft();
+        }
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        {
+            mechanics.MoveRight();
+        }
+    }
+    void State_MOVELEFT()
+    {
+        mechanics.MoveLeft();
+        if (!Input.GetKey(moveLeft))
+        {
+            currentState = States.IDLE;
+        }
+        else if (Input.GetKey(moveRight))
+        {
+            currentState = States.IDLE;
+        }
+    }
+    void State_MOVERIGHT()
+    {
+        mechanics.MoveRight();
+        if (!Input.GetKey(moveRight))
+        {
+            currentState = States.IDLE;
+        }
+        else if (Input.GetKey(moveLeft))
+        {
+            currentState = States.IDLE;
+        }
+    }
+    void State_GRAB()
+    {
+        mechanics.GrabAttach(gameObject, otherPlayer);
+        if (!Input.GetKey(grab))
+        {
+            mechanics.GrabDeattach(gameObject, otherPlayer);
+            currentState = States.IDLE;
+        }
+        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        {
+            mechanics.MoveLeft();
+        }
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        {
+            mechanics.MoveRight();
+        }
+    }
+    void State_INGRAB()
+    {
+        if (otherState.currentState != States.GRAB)
+        {
+            mechanics.GrabDeattach(gameObject, otherPlayer);
+            currentState = States.IDLE;
+        }
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
         {
             print("grounds");
+
             grounded = true;
             currentMoveState = MoveStates.CAN_MOVE;
         }
@@ -198,6 +237,9 @@ public class State : MonoBehaviour
                 currentMoveState = MoveStates.CAN_MOVE;
             grounded = true;
         }
+
+        Debug.Log(collision.gameObject.transform.position);
+
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
