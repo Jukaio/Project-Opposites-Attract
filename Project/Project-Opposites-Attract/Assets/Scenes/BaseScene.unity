@@ -4737,7 +4737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &1888590420
 Grid:
   m_ObjectHideFlags: 0
@@ -5079,6 +5079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapGameObject: {fileID: 170476223}
   tile: {fileID: 11400000, guid: 97703844cee8e324b84db6c90545bbd9, type: 2}
+  position: {x: 1, y: 0}
 --- !u!1 &4799603321181878615
 GameObject:
   m_ObjectHideFlags: 0

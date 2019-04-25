@@ -7,6 +7,7 @@ public class CreateTile : MonoBehaviour
     public GameObject tilemapGameObject;
     public Tile tile;
 
+    public Vector2 position;
     Tilemap tilemap;
 
     void Start()
@@ -18,19 +19,17 @@ public class CreateTile : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Alpha2))
         {
-            CreateTiles();
+            CreateTiles(position);
         }
     }
 
-    void CreateTiles()
+    void CreateTiles(Vector2 pos)
     {
-        Vector3 hitPosition = Vector3.zero;
+        Vector3 tilePosition = Vector3.zero;
 
-        hitPosition.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + 2;
-        hitPosition.y = gameObject.transform.position.y - 0.01f * gameObject.transform.position.y;
+        tilePosition.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + pos.x;
+        tilePosition.y = gameObject.transform.position.y - 0.01f * gameObject.transform.position.y + pos.y;
 
-        tilemap.SetTile(tilemap.WorldToCell(hitPosition), tile);
-
-
+        tilemap.SetTile(tilemap.WorldToCell(tilePosition), tile);
     }
 }
