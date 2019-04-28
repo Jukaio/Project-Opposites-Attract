@@ -5,18 +5,12 @@ using UnityEngine.Tilemaps;
 
 public class DestroyTile : MonoBehaviour
 {
-    public GameObject tilemapGameObject;
+    public Tilemap tilemap;
+    Vector3 tilePos;
 
-    Tilemap tilemap;
-
-    void Start()
+    void OnCollisionStay2D(Collision2D collision)
     {
-        tilemap = tilemapGameObject.GetComponent<Tilemap>();
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (Input.GetKey(KeyCode.Alpha1))
+        if (Input.GetKey(KeyCode.W))
         {
             DestroyTiles(collision);
         }
@@ -24,16 +18,11 @@ public class DestroyTile : MonoBehaviour
 
     void DestroyTiles(Collision2D collision)
     {
-        Vector3 hitPosition = Vector3.zero;
-        if (tilemap != null && tilemapGameObject == collision.gameObject)
+        foreach (ContactPoint2D collisionPoint in collision.contacts)
         {
-            foreach (ContactPoint2D hit in collision.contacts)
-            {
-                hitPosition.x = hit.point.x - 0.01f * hit.normal.x;
-                hitPosition.y = hit.point.y - 0.01f * hit.normal.y;
-                tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
-            }
+            tilePos.x = collisionPoint.point.x - 0.01f * collisionPoint.normal.x;
+            tilePos.y = collisionPoint.point.y - 0.01f * collisionPoint.normal.y;
+            tilemap.SetTile(tilemap.WorldToCell(tilePos), null);
         }
     }
-
 }

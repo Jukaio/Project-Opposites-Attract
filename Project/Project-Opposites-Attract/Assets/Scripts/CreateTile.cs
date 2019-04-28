@@ -4,32 +4,24 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 public class CreateTile : MonoBehaviour
 {
-    public GameObject tilemapGameObject;
+    public Tilemap tilemap;
     public Tile tile;
 
+    private Vector3 tilePos;
     public Vector2 position;
-    Tilemap tilemap;
-
-    void Start()
-    {
-        tilemap = tilemapGameObject.GetComponent<Tilemap>();
-    }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Alpha2))
+        if (Input.GetKey(KeyCode.I))
         {
             CreateTiles(position);
         }
     }
 
-    void CreateTiles(Vector2 pos)
+    void CreateTiles(Vector2 position)
     {
-        Vector3 tilePosition = Vector3.zero;
-
-        tilePosition.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + pos.x;
-        tilePosition.y = gameObject.transform.position.y - 0.01f * gameObject.transform.position.y + pos.y;
-
-        tilemap.SetTile(tilemap.WorldToCell(tilePosition), tile);
+        tilePos.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + position.x;
+        tilePos.y = gameObject.transform.position.y - 0.01f * gameObject.transform.position.y + position.y;
+        tilemap.SetTile(tilemap.WorldToCell(tilePos), tile);
     }
 }

@@ -10,17 +10,30 @@ public class Portal : MonoBehaviour
     void Start()
     {
         buttonScript = GetComponent<Buttons>();
+        
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            buttonScript.LoadRandom();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("portal"))
         {
-            print("portal");
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                buttonScript.LoadLevel(1);
-            }
+            onPortal = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("portal"))
+        {
+            onPortal = false;
         }
     }
 }

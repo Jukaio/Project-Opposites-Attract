@@ -5,8 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class Buttons : MonoBehaviour
 {
+
     public void LoadLevel(int index)
     {
+        SceneManager.LoadScene(index);
+    }
+
+    public void LoadRandom()
+    {
+        int index = Random.Range(1, SceneManager.sceneCountInBuildSettings);
         SceneManager.LoadScene(index);
     }
 

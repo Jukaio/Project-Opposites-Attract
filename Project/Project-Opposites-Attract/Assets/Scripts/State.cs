@@ -24,15 +24,11 @@ public class State : MonoBehaviour
     }
     public MoveStates currentMoveState;
 
-
-
     public GameObject otherPlayer;
     public State otherState;
 
     Mechanics mechanics;
     Mechanics otherMechanics;
-
-    float rangeDist = 3;
 
     public KeyCode moveLeft;// = KeyCode.A;
     public KeyCode moveRight; // = KeyCode.D;
@@ -40,7 +36,6 @@ public class State : MonoBehaviour
     public KeyCode throws; // = KeyCode.E;
 
     public bool grounded;
-    public bool canMove;
 
     void Start()
     {
@@ -61,7 +56,6 @@ public class State : MonoBehaviour
         {
             case MoveStates.CAN_MOVE:
                 CanMoveInputHandler();
-
                 break;
 
             case MoveStates.CAN_NOT_MOVE:
@@ -124,7 +118,7 @@ public class State : MonoBehaviour
         }
         else if (Input.GetKey(grab))
         {
-            if (mechanics.InRange(gameObject, otherPlayer, rangeDist))
+            if (mechanics.InRange(gameObject, otherPlayer))
             {
                 currentState = States.GRAB;
                 otherState.currentState = States.IN_GRAB;
@@ -132,7 +126,7 @@ public class State : MonoBehaviour
         }
         else if (Input.GetKeyDown(throws))
         {
-            if (mechanics.InRange(gameObject, otherPlayer, rangeDist) && otherState.grounded)
+            if (mechanics.InRange(gameObject, otherPlayer) && otherState.grounded)
             {
                 otherState.grounded = false;
                 otherState.currentState = States.IN_THROW;
@@ -210,8 +204,6 @@ public class State : MonoBehaviour
         }
     }
 
-
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("ground"))
@@ -238,7 +230,7 @@ public class State : MonoBehaviour
             grounded = true;
         }
 
-        Debug.Log(collision.gameObject.transform.position);
+        //Debug.Log(collision.gameObject.transform.position);
 
     }
     private void OnCollisionExit2D(Collision2D collision)

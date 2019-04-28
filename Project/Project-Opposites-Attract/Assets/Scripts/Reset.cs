@@ -16,6 +16,10 @@ public class Reset : MonoBehaviour
         {
             buttonScript.ReloadScene();
         }
+    }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        buttonScript.LoadLevel(0);
     }
 }
