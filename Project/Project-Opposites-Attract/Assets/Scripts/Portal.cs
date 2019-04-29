@@ -1,39 +1,50 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour
 {
-    Buttons buttonScript;
+    SceneScripts scriptsScene;
     public bool onPortal;
+    public bool redOnPortal;
+    public bool blueOnPortal;
+    public int index;
 
     void Start()
     {
-        buttonScript = GetComponent<Buttons>();
-        
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            buttonScript.LoadRandom();
-        }
+        if (blueOnPortal && redOnPortal)
+            if (Input.GetKey(KeyCode.Alpha1))
+                scriptsScene.LoadRandom();
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("portal"))
+        if (collision.gameObject.CompareTag("redPlayer"))
         {
-            onPortal = true;
+            redOnPortal = true;
+        }
+        else if (collision.gameObject.CompareTag("bluePlayer"))
+        {
+            blueOnPortal = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("portal"))
+        if (collision.gameObject.CompareTag("redPlayer"))
         {
-            onPortal = false;
+            redOnPortal = false;
+        }
+        else if (collision.gameObject.CompareTag("bluePlayer"))
+        {
+            blueOnPortal = false;
         }
     }
 }

@@ -62,8 +62,6 @@ public class SpawnLevel : MonoBehaviour
 
         levelBuildData = PrepareWorldFrameData(levelBuildData);
 
-        BuildWorldFrame();
-        DrawWorldFrame();
 
     }
 

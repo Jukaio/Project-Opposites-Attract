@@ -103,7 +103,14 @@ public class State : MonoBehaviour
     }
     void CanNoteMoveInputHandler()
     {
-
+      switch(currentState)
+        {
+            case States.GRAB:
+                currentState = States.IDLE;
+                mechanics.GrabDeattach(otherPlayer);
+                break;
+        }
+        
     }
 
     void State_IDLE()
@@ -134,6 +141,7 @@ public class State : MonoBehaviour
             }
         }
     }
+
     void State_THROW()
     {
         mechanics.Throw(otherPlayer);
@@ -183,7 +191,7 @@ public class State : MonoBehaviour
         mechanics.GrabAttach(gameObject, otherPlayer);
         if (!Input.GetKey(grab))
         {
-            mechanics.GrabDeattach(gameObject, otherPlayer);
+            mechanics.GrabDeattach(otherPlayer);
             currentState = States.IDLE;
         }
         else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
@@ -199,7 +207,7 @@ public class State : MonoBehaviour
     {
         if (otherState.currentState != States.GRAB)
         {
-            mechanics.GrabDeattach(gameObject, otherPlayer);
+            mechanics.GrabDeattach(otherPlayer);
             currentState = States.IDLE;
         }
     }

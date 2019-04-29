@@ -8,6 +8,7 @@ public class Mechanics : MonoBehaviour
     public float rangeDist;
     public float movementSpeed;
     public Vector2 throwHight;
+    public Transform parent;
 
     public Tilemap tilemap;
     public Tile tile;
@@ -29,9 +30,9 @@ public class Mechanics : MonoBehaviour
         obj2.transform.parent = obj1.transform;
     }
 
-    public void GrabDeattach(GameObject obj1, GameObject obj2)
+    public void GrabDeattach(GameObject obj)
     {
-        obj2.transform.parent = obj1.transform.parent;
+        obj.transform.parent = parent;
     }
 
     public void Throw(GameObject obj2)

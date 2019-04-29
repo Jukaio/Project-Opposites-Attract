@@ -10190,6 +10190,7 @@ MonoBehaviour:
   rangeDist: 3
   movementSpeed: 0.1
   throwHight: {x: 0, y: 8}
+  parent: {fileID: 3627458613659872299}
   tilemap: {fileID: 2127162594}
   tile: {fileID: 11400000, guid: 97703844cee8e324b84db6c90545bbd9, type: 2}
   tileSpawnPosition: {x: 1, y: -1}
@@ -10336,6 +10337,7 @@ MonoBehaviour:
   rangeDist: 2
   movementSpeed: 0.1
   throwHight: {x: 0, y: 8}
+  parent: {fileID: 3627458613659872299}
   tilemap: {fileID: 2127162594}
   tile: {fileID: 11400000, guid: 97703844cee8e324b84db6c90545bbd9, type: 2}
   tileSpawnPosition: {x: 0, y: 0}
