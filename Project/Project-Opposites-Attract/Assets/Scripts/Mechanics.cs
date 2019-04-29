@@ -45,7 +45,7 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= rangeDist;
     }
 
-    void CreateTiles()
+    public void CreateTiles()
     {
         Vector3 tilePos = Vector3.zero;
         tilePos.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + tileSpawnPosition.x;
@@ -53,7 +53,7 @@ public class Mechanics : MonoBehaviour
         tilemap.SetTile(tilemap.WorldToCell(tilePos), tile);
     }
 
-    void DestroyTiles(Collision2D collision)
+    public void DestroyTiles(Collision2D collision)
     {
         Vector3 tilePos = Vector3.zero;
         foreach (ContactPoint2D collisionPoint in collision.contacts)

@@ -4,22 +4,23 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public GameObject projectile;
-    Rigidbody2D rb2d;
+    Mechanics mechanics;
 
     void Start()
     {
-        rb2d = GetComponent<Rigidbody2D>();
+        mechanics = GetComponent<Mechanics>();
     }
 
-    
     void Update()
     {
-        
+        mechanics.MoveLeft();
     }
 
-    public void CreateProjectile(float speed)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Instantiate(projectile, new Vector2 (speed, 0f), transform.rotation);
+        if (!collision.gameObject.CompareTag("redPlayer") && !collision.gameObject.CompareTag("redPlayer") && !collision.gameObject.CompareTag("breakable"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

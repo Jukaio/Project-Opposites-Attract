@@ -5,15 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class DestroyTile : MonoBehaviour
 {
-    public Tilemap tilemap;
+    Tilemap tilemap;
     Vector3 tilePos;
+
+    private void Start()
+    {
+        tilemap = GameObject.FindGameObjectWithTag("breakable").GetComponent<Tilemap>();
+    }
 
     void OnCollisionStay2D(Collision2D collision)
     {
-        if (Input.GetKey(KeyCode.W))
-        {
-            DestroyTiles(collision);
-        }
+         DestroyTiles(collision);
     }
 
     void DestroyTiles(Collision2D collision)
