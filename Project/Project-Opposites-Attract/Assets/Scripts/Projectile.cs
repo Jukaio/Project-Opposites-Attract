@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
 
     void Update()
     {
-        mechanics.MoveLeft();
+        mechanics.MoveRight();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
