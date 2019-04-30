@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2290596353826979942}
   - component: {fileID: 6163032126754164086}
   - component: {fileID: 4553664463860842628}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,6 +148,7 @@ MonoBehaviour:
   rangeDist: 0
   movementSpeed: 0.1
   throwHight: {x: 0, y: 0}
+  parent: {fileID: 0}
   tilemap: {fileID: 0}
   tile: {fileID: 0}
   tileSpawnPosition: {x: 0, y: 0}

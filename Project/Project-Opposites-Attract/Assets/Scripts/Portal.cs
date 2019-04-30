@@ -11,17 +11,11 @@ public class Portal : MonoBehaviour
     public bool blueOnPortal;
     public int index;
 
-    void Start()
-    {
-
-    }
-
     private void Update()
     {
         if (blueOnPortal && redOnPortal)
             if (Input.GetKey(KeyCode.Alpha1))
                 scriptsScene.LoadRandom();
-
     }
 
     private void OnTriggerStay2D(Collider2D collision)

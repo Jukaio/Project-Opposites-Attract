@@ -4,22 +4,18 @@ using UnityEngine;
 
 public class Reset : MonoBehaviour
 {
-    Buttons buttonScript;
-    private void Start()
-    {
-        buttonScript = GetComponent<Buttons>();
-    }
+    SceneScripts scriptsScene;
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            buttonScript.ReloadScene();
+            scriptsScene.ReloadScene();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        buttonScript.LoadLevel(0);
+        scriptsScene.LoadLevel(0);
     }
 }

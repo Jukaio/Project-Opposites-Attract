@@ -10,6 +10,7 @@ TagManager:
   - redPlayer
   - bluePlayer
   - portal
+  - breakable
   layers:
   - Default
   - TransparentFX
