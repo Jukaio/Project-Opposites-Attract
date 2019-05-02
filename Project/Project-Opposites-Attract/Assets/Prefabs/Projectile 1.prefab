@@ -72,7 +72,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!212 &2865250479473743360
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 563336cfd7fdfa241944f328bc0d215c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction: {x: 2, y: 7}
 --- !u!114 &6163032126754164086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +152,10 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   tile: {fileID: 0}
   tileSpawnPosition: {x: 0, y: 0}
+  projectileSpawn: {fileID: 0}
+  mechanic1: 0
+  mechanic1prefab: {fileID: 0}
+  mechanic1poolAmount: 0
 --- !u!114 &8724135773379486164
 MonoBehaviour:
   m_ObjectHideFlags: 0

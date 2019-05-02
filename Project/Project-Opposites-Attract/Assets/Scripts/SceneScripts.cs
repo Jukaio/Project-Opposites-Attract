@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneScripts : ScriptableObject
+public class SceneScripts : MonoBehaviour
 {
     public void LoadRandom()
     {

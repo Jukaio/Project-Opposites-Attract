@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Reset : MonoBehaviour
 {
+
     SceneScripts scriptsScene;
+
+    private void Start()
+    {
+        scriptsScene = GetComponent<SceneScripts>();
+    }
 
     private void Update()
     {
@@ -16,6 +22,6 @@ public class Reset : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        scriptsScene.LoadLevel(0);
+        scriptsScene.LoadLevel(1);
     }
 }
