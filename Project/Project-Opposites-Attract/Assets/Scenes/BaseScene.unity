@@ -786,6 +786,7 @@ GameObject:
   m_Component:
   - component: {fileID: 139250482690712032}
   - component: {fileID: 7331581412772981966}
+  - component: {fileID: 4602244216504948871}
   - component: {fileID: 4602244216504948870}
   - component: {fileID: 8817545569017596586}
   - component: {fileID: 4602244216504948869}
@@ -828,16 +829,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMatIndex: 2
-  playerPadIndex: 3
   currentState: 0
   currentMoveState: 0
   otherPlayer: {fileID: 5013730010986637763}
   otherState: {fileID: 0}
-  moveLeft: 106
-  moveRight: 108
-  grab: 117
-  throws: 111
   grounded: 0
 --- !u!70 &4602244216504948870
 CapsuleCollider2D:
@@ -855,6 +850,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 4}
   m_Direction: 0
+--- !u!114 &4602244216504948871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4602244216504948867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6ab92e3e5278c46ad812c5ce43dc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveLeft: 106
+  moveRight: 108
+  grab: 117
+  throws: 111
+  playerPadIndex: 1
+  playerMatIndex: 1
 --- !u!1 &5013730010986637763
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +878,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2974388017966790757}
   - component: {fileID: 9132888002738193068}
+  - component: {fileID: 5013730010986637768}
   - component: {fileID: 5013730010986637766}
   - component: {fileID: 7291024662289358127}
   - component: {fileID: 5013730010986637765}
@@ -908,16 +922,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMatIndex: 0
-  playerPadIndex: 0
   currentState: 0
   currentMoveState: 0
   otherPlayer: {fileID: 4602244216504948867}
   otherState: {fileID: 0}
-  moveLeft: 97
-  moveRight: 100
-  grab: 113
-  throws: 101
   grounded: 1
 --- !u!70 &5013730010986637766
 CapsuleCollider2D:
@@ -947,6 +955,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64194a58263464d4687784f7d8a1f8d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5013730010986637768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013730010986637763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6ab92e3e5278c46ad812c5ce43dc84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveLeft: 97
+  moveRight: 100
+  grab: 113
+  throws: 101
+  playerPadIndex: 0
+  playerMatIndex: 0
 --- !u!1 &5499830648321827357
 GameObject:
   m_ObjectHideFlags: 0
