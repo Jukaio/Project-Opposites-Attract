@@ -741,7 +741,7 @@ MonoBehaviour:
   B: 56
   X: 57
   Y: 48
-  playerPadIndex: 1
+  playerPadIndex: 3
   playerMatIndex: 1
 --- !u!1 &5013730010986637763
 GameObject:
@@ -855,7 +855,7 @@ MonoBehaviour:
   B: 50
   X: 51
   Y: 52
-  playerPadIndex: 0
+  playerPadIndex: 2
   playerMatIndex: 0
 --- !u!1 &5499830648321827357
 GameObject:

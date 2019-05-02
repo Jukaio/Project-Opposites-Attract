@@ -171,19 +171,19 @@ public class State : MonoBehaviour
         }
         else if (command.ButtonA())
         {
-            mechanics.shootProjectile(new Vector2(-2f, 7));
+            mechanics.shootProjectile(new Vector2(2f, 7));
         }
         else if (command.ButtonB())
         {
-            mechanics.shootProjectile(new Vector2(2f, 7));
+            mechanics.shootProjectile(new Vector2(-2f, 7));
         }
         else if (command.ButtonX())
         {
-            mechanics.shootProjectile(new Vector2(-7f, 1));
+            mechanics.shootProjectile(new Vector2(7f, 2));
         }
         else if (command.ButtonY())
         {
-            mechanics.shootProjectile(new Vector2(7, 1));
+            mechanics.shootProjectile(new Vector2(-7, 2));
         }
     }
 

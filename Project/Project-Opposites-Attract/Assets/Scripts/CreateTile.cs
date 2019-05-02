@@ -19,6 +19,7 @@ public class CreateTile : MonoBehaviour
     {
         print("colllide");
         CreateTiles(position);
+        gameObject.SetActive(false);
     }
 
     void CreateTiles(Vector2 position)
