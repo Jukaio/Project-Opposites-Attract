@@ -15,6 +15,24 @@ public class Mechanics : MonoBehaviour
 
     public Vector2 tileSpawnPosition;
 
+    public Transform projectileSpawn;
+
+    //Mechanic 1
+    public bool mechanic1;
+    public GameObject mechanic1prefab;
+    public int mechanic1poolAmount;
+    ShootProjectiles Mechanic1;
+
+    private void Start()
+    {
+        Debug.Log(mechanic1poolAmount + " in start");
+        if (mechanic1)
+        {
+            Mechanic1 = gameObject.AddComponent<ShootProjectiles>();
+        }
+
+    }
+
     public void MoveLeft()
     {
         transform.Translate(new Vector2(-movementSpeed, 0f));
@@ -45,22 +63,10 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= rangeDist;
     }
 
-    public void CreateTiles()
+    public void shootProjectile(Vector2 direction)
     {
-        Vector3 tilePos = Vector3.zero;
-        tilePos.x = gameObject.transform.position.x - 0.01f * gameObject.transform.position.x + tileSpawnPosition.x;
-        tilePos.y = gameObject.transform.position.y - 0.01f * gameObject.transform.position.y + tileSpawnPosition.y;
-        tilemap.SetTile(tilemap.WorldToCell(tilePos), tile);
+        Mechanic1.ActivateObj(direction);
     }
 
-    public void DestroyTiles(Collision2D collision)
-    {
-        Vector3 tilePos = Vector3.zero;
-        foreach (ContactPoint2D collisionPoint in collision.contacts)
-        {
-            tilePos.x = collisionPoint.point.x - 0.01f * collisionPoint.normal.x;
-            tilePos.y = collisionPoint.point.y - 0.01f * collisionPoint.normal.y;
-            tilemap.SetTile(tilemap.WorldToCell(tilePos), null);
-        }
-    }
+
 }

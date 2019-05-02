@@ -11,6 +11,11 @@ public class Command : MonoBehaviour
     public KeyCode grab; // = KeyCode.Q;
     public KeyCode throws; // = KeyCode.E;
 
+    public KeyCode A;
+    public KeyCode B;
+    public KeyCode X;
+    public KeyCode Y;
+
     //Gamepad
     public PlayerIndex playerPadIndex;
 
@@ -41,4 +46,26 @@ public class Command : MonoBehaviour
         return (Input.GetKey(throws) ||
         GamePad.GetState(playerPadIndex).Triggers.Right != 0);
     }
+
+    public bool ButtonA()
+    {
+        return (Input.GetKeyDown(A) ||
+        GamePad.GetState(playerMatIndex).Buttons.A == ButtonState.Pressed);
+    }
+    public bool ButtonB()
+    {
+        return (Input.GetKeyDown(B) ||
+        GamePad.GetState(playerMatIndex).Buttons.B == ButtonState.Pressed);
+    }
+    public bool ButtonX()
+    {
+        return (Input.GetKeyDown(X) ||
+        GamePad.GetState(playerMatIndex).Buttons.X == ButtonState.Pressed);
+    }
+    public bool ButtonY()
+    {
+        return (Input.GetKeyDown(Y) ||
+        GamePad.GetState(playerMatIndex).Buttons.Y == ButtonState.Pressed);
+    }
+
 }

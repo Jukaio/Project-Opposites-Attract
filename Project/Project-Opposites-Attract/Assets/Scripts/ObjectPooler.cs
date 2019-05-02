@@ -7,6 +7,7 @@ public class ObjectPooler : MonoBehaviour
     public List<GameObject> pooledObjects;
     public GameObject prefab;
     public int poolAmount;
+    public Transform spawn;
 
     void Start()
     {
@@ -19,20 +20,12 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            ActivateObj();
-        }
-    }
-
-    public void ActivateObj()
+    public void ActivateObj(Vector2 direction)
     {
         GameObject obj = GetObj();
         if (obj != null)
         {
-            obj.transform.position = transform.position;
+            obj.transform.position = spawn.transform.position;
             obj.SetActive(true);
         }
     }

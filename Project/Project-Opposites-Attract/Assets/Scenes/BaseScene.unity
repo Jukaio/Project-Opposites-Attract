@@ -121,7 +121,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 461744729}
-  - component: {fileID: 461744730}
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Untagged
@@ -143,21 +142,6 @@ Transform:
   m_Father: {fileID: 2974388017966790757}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &461744730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 461744728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1050cdadbb185f04f95d3eb58bb2fbe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
-  prefab: {fileID: 7608996938396417684, guid: 2703a8600c2916340b4376193f2ae222, type: 3}
-  poolAmount: 3
 --- !u!1 &539821307
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +449,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265555290}
-  - component: {fileID: 1265555291}
   m_Layer: 8
   m_Name: Spawn
   m_TagString: Untagged
@@ -487,21 +470,6 @@ Transform:
   m_Father: {fileID: 139250482690712032}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1265555291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1265555289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1050cdadbb185f04f95d3eb58bb2fbe4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pooledObjects: []
-  prefab: {fileID: 7608996938396417684, guid: 421708492a4e501409a85cc157c204f6, type: 3}
-  poolAmount: 3
 --- !u!1001 &1588007289
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -817,6 +785,11 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   tile: {fileID: 11400000, guid: 97703844cee8e324b84db6c90545bbd9, type: 2}
   tileSpawnPosition: {x: 1, y: -1}
+  projectileSpawn: {fileID: 1265555290}
+  mechanic1: 1
+  mechanic1prefab: {fileID: 7608996938396417684, guid: 421708492a4e501409a85cc157c204f6,
+    type: 3}
+  mechanic1poolAmount: 3
 --- !u!114 &4602244216504948869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,6 +839,10 @@ MonoBehaviour:
   moveRight: 108
   grab: 117
   throws: 111
+  A: 55
+  B: 56
+  X: 57
+  Y: 48
   playerPadIndex: 1
   playerMatIndex: 1
 --- !u!1 &5013730010986637763
@@ -881,6 +858,7 @@ GameObject:
   - component: {fileID: 5013730010986637768}
   - component: {fileID: 5013730010986637766}
   - component: {fileID: 7291024662289358127}
+  - component: {fileID: 5013730010986637769}
   - component: {fileID: 5013730010986637765}
   - component: {fileID: 5013730010986637764}
   - component: {fileID: 5013730010986637767}
@@ -910,6 +888,11 @@ MonoBehaviour:
   tilemap: {fileID: 0}
   tile: {fileID: 11400000, guid: 97703844cee8e324b84db6c90545bbd9, type: 2}
   tileSpawnPosition: {x: 0, y: 0}
+  projectileSpawn: {fileID: 461744729}
+  mechanic1: 1
+  mechanic1prefab: {fileID: 7608996938396417684, guid: 2703a8600c2916340b4376193f2ae222,
+    type: 3}
+  mechanic1poolAmount: 3
 --- !u!114 &5013730010986637765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -971,8 +954,28 @@ MonoBehaviour:
   moveRight: 100
   grab: 113
   throws: 101
+  A: 49
+  B: 50
+  X: 51
+  Y: 52
   playerPadIndex: 0
   playerMatIndex: 0
+--- !u!114 &5013730010986637769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013730010986637763}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1050cdadbb185f04f95d3eb58bb2fbe4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  prefab: {fileID: 7608996938396417684, guid: 2703a8600c2916340b4376193f2ae222, type: 3}
+  poolAmount: 3
+  spawn: {fileID: 461744729}
 --- !u!1 &5499830648321827357
 GameObject:
   m_ObjectHideFlags: 0
