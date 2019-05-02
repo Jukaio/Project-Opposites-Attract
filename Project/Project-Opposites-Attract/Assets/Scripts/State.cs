@@ -2,9 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using XInputDotNetPure;
+
 
 public class State : MonoBehaviour
 {
+    bool playerIndexSet = false;
+    public PlayerIndex playerMatIndex; //which player? 
+    public PlayerIndex playerPadIndex;
+
+    GamePadState state;
+    GamePadState prevState;
+
+    GamePadState playerMat;
+    GamePadState playerPad;
+
     public enum States
     {
         IDLE,
@@ -45,8 +57,37 @@ public class State : MonoBehaviour
         otherState = otherPlayer.GetComponent<State>();
     }
 
+    void CheckGamepadStates()
+    {
+        //if (!playerIndexSet || !prevState.IsConnected)
+        //{
+        //    for (int i = 0; i < 4; ++i)
+        //    {
+        //        PlayerIndex testPlayerIndex = (PlayerIndex)i;
+        //        GamePadState testState = GamePad.GetState(testPlayerIndex);
+        //        if (testState.IsConnected)
+        //        {
+        //            Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+        //            playerIndexSet = true;
+        //        }
+        //    }
+        //}
+
+        prevState = state;
+        state = GamePad.GetState(playerMatIndex);
+    }
+
     void Update()
     {
+        // Find a PlayerIndex, for a single player game
+        // Will find the first controller that is connected ans use it
+
+        
+
+        Debug.Log("State " + GamePad.GetState(playerPadIndex));
+
+        CheckGamepadStates();
+
         MoveStatesHandler();
     }
 
@@ -115,7 +156,8 @@ public class State : MonoBehaviour
 
     void State_IDLE()
     {
-        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        if ((Input.GetKey(moveLeft) && !Input.GetKey(moveRight)) || 
+            (GamePad.GetState(playerPadIndex).DPad.Left == ButtonState.Pressed && GamePad.GetState(playerPadIndex).DPad.Right == ButtonState.Released)) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed
         {
             currentState = States.MOVE_LEFT;
         }

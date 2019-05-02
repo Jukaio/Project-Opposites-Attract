@@ -828,6 +828,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMatIndex: 2
+  playerPadIndex: 3
   currentState: 0
   currentMoveState: 0
   otherPlayer: {fileID: 5013730010986637763}
@@ -867,6 +869,7 @@ GameObject:
   - component: {fileID: 7291024662289358127}
   - component: {fileID: 5013730010986637765}
   - component: {fileID: 5013730010986637764}
+  - component: {fileID: 5013730010986637767}
   m_Layer: 8
   m_Name: Red Player
   m_TagString: redPlayer
@@ -905,6 +908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1121723226bf2484d96db948d02b164d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerMatIndex: 0
+  playerPadIndex: 0
   currentState: 0
   currentMoveState: 0
   otherPlayer: {fileID: 4602244216504948867}
@@ -930,6 +935,18 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 2, y: 4}
   m_Direction: 0
+--- !u!114 &5013730010986637767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013730010986637763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64194a58263464d4687784f7d8a1f8d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5499830648321827357
 GameObject:
   m_ObjectHideFlags: 0
