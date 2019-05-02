@@ -84,8 +84,6 @@ public class State : MonoBehaviour
         // Find a PlayerIndex, for a single player game
         // Will find the first controller that is connected ans use it
 
-        
-
         Debug.Log("State " + GamePad.GetState(playerPadIndex));
 
         CheckGamepadStates();
@@ -159,15 +157,17 @@ public class State : MonoBehaviour
     void State_IDLE()
     {
         if ((Input.GetKey(moveLeft) && !Input.GetKey(moveRight)) || 
-            (GamePad.GetState(playerPadIndex).DPad.Left == ButtonState.Pressed && GamePad.GetState(playerPadIndex).DPad.Right == ButtonState.Released)) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed
+            (GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Released)) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed
         {
             currentState = States.MOVE_LEFT;
         }
-        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft) ||
+            GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Released)
         {
             currentState = States.MOVE_RIGHT;
         }
-        else if (Input.GetKey(grab))
+        else if (Input.GetKey(grab) ||
+            GamePad.GetState(playerPadIndex).Triggers.Left != 0) //grab key
         {
             if (mechanics.InRange(gameObject, otherPlayer))
             {
@@ -175,7 +175,8 @@ public class State : MonoBehaviour
                 otherState.currentState = States.IN_GRAB;
             }
         }
-        else if (Input.GetKeyDown(throws))
+        else if (Input.GetKeyDown(throws) ||
+            GamePad.GetState(playerPadIndex).Triggers.Right != 0) // throw key
         {
             if (mechanics.InRange(gameObject, otherPlayer) && otherState.grounded)
             {
@@ -197,11 +198,13 @@ public class State : MonoBehaviour
         {
             currentState = States.IDLE;
         }
-        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight) ||
+            GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Released) // move key
         {
             mechanics.MoveLeft();
         }
-        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft) ||
+            GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Released) //move key
         {
             mechanics.MoveRight();
         }
@@ -209,11 +212,13 @@ public class State : MonoBehaviour
     void State_MOVELEFT()
     {
         mechanics.MoveLeft();
-        if (!Input.GetKey(moveLeft))
+        if (!Input.GetKey(moveLeft) ||
+            GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Released) //move key
         {
             currentState = States.IDLE;
         }
-        else if (Input.GetKey(moveRight))
+        else if (Input.GetKey(moveRight) ||
+            GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Pressed) //move key
         {
             currentState = States.IDLE;
         }
@@ -221,11 +226,13 @@ public class State : MonoBehaviour
     void State_MOVERIGHT()
     {
         mechanics.MoveRight();
-        if (!Input.GetKey(moveRight))
+        if (!Input.GetKey(moveRight) ||
+            GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Released) //move key
         {
             currentState = States.IDLE;
         }
-        else if (Input.GetKey(moveLeft))
+        else if (Input.GetKey(moveLeft) ||
+            GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Pressed) //move key
         {
             currentState = States.IDLE;
         }
@@ -233,16 +240,19 @@ public class State : MonoBehaviour
     void State_GRAB()
     {
         mechanics.GrabAttach(gameObject, otherPlayer);
-        if (!Input.GetKey(grab))
+        if (!Input.GetKey(grab) ||
+            GamePad.GetState(playerPadIndex).Triggers.Left == 0) //grab key
         {
             mechanics.GrabDeattach(otherPlayer);
             currentState = States.IDLE;
         }
-        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight))
+        else if (Input.GetKey(moveLeft) && !Input.GetKey(moveRight) ||
+            GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Released) //move key
         {
             mechanics.MoveLeft();
         }
-        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft))
+        else if (Input.GetKey(moveRight) && !Input.GetKey(moveLeft) ||
+            GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Released) //move key
         {
             mechanics.MoveRight();
         }
