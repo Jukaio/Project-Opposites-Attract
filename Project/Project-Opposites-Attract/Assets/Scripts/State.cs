@@ -59,20 +59,22 @@ public class State : MonoBehaviour
 
     void CheckGamepadStates()
     {
-        //if (!playerIndexSet || !prevState.IsConnected)
-        //{
-        //    for (int i = 0; i < 4; ++i)
-        //    {
-        //        PlayerIndex testPlayerIndex = (PlayerIndex)i;
-        //        GamePadState testState = GamePad.GetState(testPlayerIndex);
-        //        if (testState.IsConnected)
-        //        {
-        //            Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
-        //            playerIndexSet = true;
-        //        }
-        //    }
-        //}
+        if (!playerIndexSet || !prevState.IsConnected)
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                PlayerIndex testPlayerIndex = (PlayerIndex)i;
+                GamePadState testState = GamePad.GetState(testPlayerIndex);
+                if (testState.IsConnected)
+                {
+                    Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
+                    playerIndexSet = true;
+                }
+                else
+                    Debug.Log(string.Format("GamePad not found {0}", testPlayerIndex));
 
+            }
+        }
         prevState = state;
         state = GamePad.GetState(playerMatIndex);
     }
