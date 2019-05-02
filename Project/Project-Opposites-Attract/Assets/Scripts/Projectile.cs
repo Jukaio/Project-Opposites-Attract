@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    Mechanics mechanics;
+    public Vector2 direction;
 
-    void Start()
+    private void OnEnable()
     {
-        mechanics = GetComponent<Mechanics>();
-    }
-
-    void Update()
-    {
-        mechanics.MoveRight();
+        GetComponent<Rigidbody2D>().AddForce(direction, ForceMode2D.Impulse);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("redPlayer") && !collision.gameObject.CompareTag("redPlayer") && !collision.gameObject.CompareTag("breakable"))
+        if (!collision.gameObject.CompareTag("redPlayer") && !collision.gameObject.CompareTag("bluePlayer") && !collision.gameObject.CompareTag("breakable"))
         {
             gameObject.SetActive(false);
         }

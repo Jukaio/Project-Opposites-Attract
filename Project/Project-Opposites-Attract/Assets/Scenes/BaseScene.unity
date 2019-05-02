@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   prefab: {fileID: 7608996938396417684, guid: 2703a8600c2916340b4376193f2ae222, type: 3}
-  poolAmount: 5
+  poolAmount: 3
 --- !u!1 &539821307
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   prefab: {fileID: 7608996938396417684, guid: 421708492a4e501409a85cc157c204f6, type: 3}
-  poolAmount: 5
+  poolAmount: 3
 --- !u!1001 &1588007289
 PrefabInstance:
   m_ObjectHideFlags: 0
