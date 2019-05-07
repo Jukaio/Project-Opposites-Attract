@@ -132,14 +132,13 @@ public class State : MonoBehaviour
     }
     void CanNoteMoveInputHandler()
     {
-      switch(currentState)
+        switch(currentState)
         {
             case States.GRAB:
                 currentState = States.IDLE;
                 mechanics.GrabDeattach(otherPlayer);
                 break;
         }
-        
     }
 
     void State_IDLE()
@@ -171,19 +170,19 @@ public class State : MonoBehaviour
         }
         else if (command.ButtonA())
         {
-            mechanics.shootProjectile(new Vector2(2f, 7));
+            StartCoroutine(mechanics.shootProjectile(new Vector2(2f, 7)));
         }
         else if (command.ButtonB())
         {
-            mechanics.shootProjectile(new Vector2(-2f, 7));
+            StartCoroutine(mechanics.shootProjectile(new Vector2(-2f, 7)));
         }
         else if (command.ButtonX())
         {
-            mechanics.shootProjectile(new Vector2(7f, 2));
+            StartCoroutine(mechanics.shootProjectile(new Vector2(7f, 2)));
         }
         else if (command.ButtonY())
         {
-            mechanics.shootProjectile(new Vector2(-7, 2));
+            StartCoroutine(mechanics.shootProjectile(new Vector2(-7, 2)));
         }
     }
 
@@ -236,7 +235,7 @@ public class State : MonoBehaviour
         mechanics.GrabAttach(gameObject, otherPlayer);
         if (!command.Grab()) //grab key
         {
-            mechanics.GrabDeattach(otherPlayer);
+            mechanics.GrabDeattach(otherPlayer); 
             currentState = States.IDLE;
         }
         else if (command.MoveLeft()) //move key
@@ -260,7 +259,7 @@ public class State : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground"))
+        if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("breakable"))
         {
             print("grounds");
 
@@ -270,17 +269,25 @@ public class State : MonoBehaviour
         else if (collision.gameObject.CompareTag("blueTile"))
         {
             if (gameObject.tag == "redPlayer")
+            {
                 currentMoveState = MoveStates.CAN_NOT_MOVE;
+            }
             else if (gameObject.tag == "bluePlayer")
+            {
                 currentMoveState = MoveStates.CAN_MOVE;
+            }
             grounded = true;
         }
         else if (collision.gameObject.CompareTag("redTile"))
         {
             if (gameObject.tag == "bluePlayer")
+            {
                 currentMoveState = MoveStates.CAN_NOT_MOVE;
+            }
             else if (gameObject.tag == "redPlayer")
+            {
                 currentMoveState = MoveStates.CAN_MOVE;
+            }
             grounded = true;
         }
 

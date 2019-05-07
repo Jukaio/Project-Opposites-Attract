@@ -9,7 +9,6 @@ public class ShootProjectiles : MonoBehaviour
     Transform projectileSpawn;
     int poolAmount;
 
-
     private void Start()
     {
         mechanics = GetComponent<Mechanics>();

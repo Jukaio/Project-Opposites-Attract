@@ -9,7 +9,7 @@ public class Mechanics : MonoBehaviour
     public float movementSpeed;
     public Vector2 throwHight;
     public Transform parent;
-
+    
     public Tilemap tilemap;
     public Tile tile;
 
@@ -30,7 +30,6 @@ public class Mechanics : MonoBehaviour
         {
             Mechanic1 = gameObject.AddComponent<ShootProjectiles>();
         }
-
     }
 
     public void MoveLeft()
@@ -63,10 +62,11 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= rangeDist;
     }
 
-    public void shootProjectile(Vector2 direction)
+    public IEnumerator shootProjectile(Vector2 direction)
     {
         Mechanic1.ActivateObj(direction);
+        print("start wait");
+        yield return new WaitForSeconds(2f);
+        print("end wait");
     }
-
-
 }

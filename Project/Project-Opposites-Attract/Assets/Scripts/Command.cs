@@ -32,7 +32,6 @@ public class Command : MonoBehaviour
     {
         return ((Input.GetKey(moveRight) && !Input.GetKey(moveLeft)) ||
         GamePad.GetState(playerMatIndex).DPad.Right == ButtonState.Pressed && GamePad.GetState(playerMatIndex).DPad.Left == ButtonState.Released);
-
     }
 
     public bool Grab()

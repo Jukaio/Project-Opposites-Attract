@@ -9,7 +9,6 @@ public class Portal : MonoBehaviour
     public bool onPortal;
     public bool redOnPortal;
     public bool blueOnPortal;
-    public int index;
 
     private void Update()
     {
