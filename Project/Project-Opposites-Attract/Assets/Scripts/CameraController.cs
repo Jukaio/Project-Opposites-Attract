@@ -18,13 +18,8 @@ public class CameraController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (obj1.transform.position.x < obj2.transform.position.x)
-        {
-
-        }
-        mid.transform.position = new Vector3((obj2.transform.position.x - obj1.transform.position.x / 2) + obj1.transform.position.x,
-            (obj2.transform.position.y - obj1.transform.position.y) + obj1.transform.position.y,
-            (obj2.transform.position.z - obj1.transform.position.z) + obj1.transform.position.z);
+        mid.transform.position = new Vector3((obj1.transform.position.x + obj2.transform.position.x) / 2,
+            (obj1.transform.position.y + obj2.transform.position.y) / 2, 0f);
 
         float posX = Mathf.SmoothDamp(transform.position.x, mid.transform.position.x, ref velocity.x, smoothTimeX);
         float posY = Mathf.SmoothDamp(transform.position.y, mid.transform.position.y, ref velocity.y, smoothTimeY);

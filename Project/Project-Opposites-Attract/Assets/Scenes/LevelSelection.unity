@@ -1740,7 +1740,7 @@ Camera:
   near clip plane: 0.01
   far clip plane: 1000
   field of view: 52
-  orthographic: 1
+  orthographic: 0
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:
@@ -1772,10 +1772,10 @@ MonoBehaviour:
   smoothTimeY: 0
   smoothTimeX: 0
   mid: {fileID: 1659832942}
-  obj1: {fileID: 353906574}
-  obj2: {fileID: 853770362}
-  minCameraPos: {x: -10.5, y: -7.5, z: -10}
-  maxCameraPos: {x: 34.5, y: -6, z: -10}
+  obj1: {fileID: 853770362}
+  obj2: {fileID: 353906574}
+  minCameraPos: {x: -11.5, y: -7.5, z: -10}
+  maxCameraPos: {x: 35.5, y: -6, z: -10}
 --- !u!4 &709703837
 Transform:
   m_ObjectHideFlags: 0
@@ -3927,8 +3927,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1659832942}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -19.27, y: -10.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 576873186}
