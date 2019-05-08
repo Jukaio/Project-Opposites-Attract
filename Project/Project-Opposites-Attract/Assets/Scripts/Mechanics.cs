@@ -7,7 +7,7 @@ public class Mechanics : MonoBehaviour
 {
     public float rangeDist;
     public float movementSpeed;
-    public Vector2 throwHight;
+    public Vector2 throwHeight;
     public Transform parent;
     
     public Tilemap tilemap;
@@ -21,14 +21,14 @@ public class Mechanics : MonoBehaviour
     public bool mechanic1;
     public GameObject mechanic1prefab;
     public int mechanic1poolAmount;
-    ShootProjectiles Mechanic1;
+    ShootProjectiles shootStuff;
 
     private void Start()
     {
         Debug.Log(mechanic1poolAmount + " in start");
         if (mechanic1)
         {
-            Mechanic1 = gameObject.AddComponent<ShootProjectiles>();
+            shootStuff = gameObject.AddComponent<ShootProjectiles>();
         }
     }
 
@@ -54,7 +54,7 @@ public class Mechanics : MonoBehaviour
 
     public void Throw(GameObject obj2)
     {
-        obj2.GetComponent<Rigidbody2D>().AddForce(throwHight, ForceMode2D.Impulse);
+        obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight, ForceMode2D.Impulse);
     }
 
     public bool InRange(GameObject obj1, GameObject obj2) //just range
@@ -64,9 +64,12 @@ public class Mechanics : MonoBehaviour
 
     public IEnumerator shootProjectile(Vector2 direction)
     {
-        Mechanic1.ActivateObj(direction);
+        shootStuff.ActivateObj(direction);
         print("start wait");
         yield return new WaitForSeconds(2f);
         print("end wait");
     }
+
+
+
 }

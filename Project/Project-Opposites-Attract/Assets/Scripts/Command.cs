@@ -22,6 +22,10 @@ public class Command : MonoBehaviour
     //Dance mat
     public PlayerIndex playerMatIndex;
 
+    //charge
+    private float chargeTime = 0;
+    private bool chargePressed = false;
+
     public bool MoveLeft()
     {
         return ((Input.GetKey(moveLeft) && !Input.GetKey(moveRight)) ||
@@ -67,4 +71,30 @@ public class Command : MonoBehaviour
         GamePad.GetState(playerMatIndex).Buttons.Y == ButtonState.Pressed);
     }
 
+    private void Update()
+    {
+        ChargingThrow();
+    }
+
+    public void ChargingThrow()
+    {
+        if ((GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R)) && !chargePressed)
+        {
+            chargeTime = 0;
+            StartCoroutine(Charge());
+        };
+
+    }
+
+    IEnumerator Charge()
+    {
+        chargePressed = true;
+        while (GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R))
+        {
+            chargeTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.LogError(chargeTime);
+        chargePressed = false;
+    }
 }
