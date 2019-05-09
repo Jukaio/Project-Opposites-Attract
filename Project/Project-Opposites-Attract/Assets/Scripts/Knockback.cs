@@ -4,17 +4,7 @@ using UnityEngine;
 
 public class Knockback : MonoBehaviour
 {
-    public Transform checkPoint;
-
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
+    public CheckpointController controller;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -22,10 +12,8 @@ public class Knockback : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<State>().currentState != State.States.IN_GRAB)
             {
-                collision.transform.position = checkPoint.transform.position;
-            }
-
-            
+                collision.transform.position = controller.currentPoint;
+            }  
         }
     }
 

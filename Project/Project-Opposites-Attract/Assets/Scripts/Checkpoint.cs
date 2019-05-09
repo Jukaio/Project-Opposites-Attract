@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public Vector3 pos;
+    private CheckpointController controller;
+
+    private void Start()
+    {
+        controller = GetComponentInParent<CheckpointController>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        pos = collision.transform.position;
+        controller.currentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y + 2, 0f);
     }
 }
