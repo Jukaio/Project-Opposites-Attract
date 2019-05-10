@@ -29,6 +29,9 @@ public class CameraController : MonoBehaviour
 
     public Camera mainCamera;
 
+    public RawImage leftCameraRender;
+    public RawImage rightCameraRender;
+
     public Image image;
 
     public float a;
@@ -74,8 +77,8 @@ public class CameraController : MonoBehaviour
 
         if ((Mathf.Abs(obj1.transform.position.x - obj2.transform.position.x) > distanceOfPlayersHor - secondCamerasHorHalf * 2))
         {
-            leftCamera.gameObject.SetActive(true);
-            rightCamera.gameObject.SetActive(true);
+            leftCameraRender.gameObject.SetActive(true);
+            rightCameraRender.gameObject.SetActive(true);
             Debug.LogError("HELP!");
             image.gameObject.SetActive(true);
 
@@ -94,8 +97,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            leftCamera.gameObject.SetActive(false);
-            rightCamera.gameObject.SetActive(false);
+            leftCameraRender.gameObject.SetActive(false);
+            rightCameraRender.gameObject.SetActive(false);
             image.gameObject.SetActive(false);
         }
         Debug.Log((mainCamera.transform.position.z * Mathf.Tan((mainCamera.fieldOfView / 2) * Mathf.PI / 180) * -1)* mainCamera.aspect);
