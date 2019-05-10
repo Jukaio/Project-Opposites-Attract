@@ -563,3 +563,4 @@ E:\repos\games\Project-Opposites-Attract\Project\Project-Opposites-Attract\obj\D
 E:\repos\games\Project-Opposites-Attract\Project\Project-Opposites-Attract\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 E:\repos\games\Project-Opposites-Attract\Project\Project-Opposites-Attract\obj\Debug\Assembly-CSharp.dll
 E:\repos\games\Project-Opposites-Attract\Project\Project-Opposites-Attract\obj\Debug\Assembly-CSharp.pdb
+C:\Users\rutas\Desktop\GitHub\Project-Opposites-Attract\Project\Project-Opposites-Attract\Temp\bin\Debug\XInputDotNetPure.dll
