@@ -69,7 +69,4 @@ public class Mechanics : MonoBehaviour
         yield return new WaitForSeconds(2f);
         print("end wait");
     }
-
-
-
 }

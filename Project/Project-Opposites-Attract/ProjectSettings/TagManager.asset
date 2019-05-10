@@ -11,6 +11,7 @@ TagManager:
   - bluePlayer
   - portal
   - breakable
+  - draggable
   layers:
   - Default
   - TransparentFX
