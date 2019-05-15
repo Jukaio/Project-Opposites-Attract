@@ -23,6 +23,8 @@ public class Mechanics : MonoBehaviour
     public int mechanic1poolAmount;
     ShootProjectiles shootStuff;
 
+    public CheckpointController checkPointController;
+
     private void Start()
     {
         Debug.Log(mechanic1poolAmount + " in start");
@@ -54,7 +56,18 @@ public class Mechanics : MonoBehaviour
 
     public void Throw(GameObject obj2)
     {
-        obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight, ForceMode2D.Impulse);
+        if(obj2.transform.position.x >= transform.position.x)
+            obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight, ForceMode2D.Impulse);
+        else if(obj2.transform.position.x <= transform.position.x)
+            obj2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwHeight.x, throwHeight.y), ForceMode2D.Impulse);
+    }
+
+    public void ChargeThrow(GameObject obj2, float factor)
+    {
+        if (obj2.transform.position.x >= transform.position.x)
+            obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight * factor, ForceMode2D.Impulse);
+        else if (obj2.transform.position.x <= transform.position.x)
+            obj2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-throwHeight.x, throwHeight.y) * factor, ForceMode2D.Impulse);
     }
 
     public bool InRange(GameObject obj1, GameObject obj2) //just range
@@ -68,5 +81,10 @@ public class Mechanics : MonoBehaviour
         print("start wait");
         yield return new WaitForSeconds(2f);
         print("end wait");
+    }
+
+    public void RespawnOnPosition()
+    {
+        transform.position = checkPointController.currentPoint;
     }
 }

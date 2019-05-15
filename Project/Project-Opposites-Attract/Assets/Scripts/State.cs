@@ -8,6 +8,23 @@ using XInputDotNetPure;
 public class State : MonoBehaviour
 {
     Command command;
+    public string canNotMoveOn;
+    public string canMoveOn;
+
+    public float chargeTime = 0;
+    bool chargePressed = false;
+
+    public enum GroundType
+    {
+        GREEN, //Later add more object tags here
+        RED,
+        BLUE,
+        AIR
+    }
+    public GroundType groundType;
+    public GroundType prevGroundType;
+    public string GroundTypeString;
+    public string prevGroundTypeString;
 
     public enum States
     {
@@ -17,16 +34,11 @@ public class State : MonoBehaviour
         GRAB,
         IN_GRAB,
         THROW,
-        IN_THROW
+        IN_THROW,
+        IN_CHARGE
     }
     public States currentState;
 
-    public enum MoveStates
-    {
-        CAN_MOVE,
-        CAN_NOT_MOVE
-    }
-    public MoveStates currentMoveState;
 
     public GameObject otherPlayer;
     public State otherState;
@@ -43,6 +55,7 @@ public class State : MonoBehaviour
         otherMechanics = otherPlayer.GetComponent<Mechanics>();
 
         otherState = otherPlayer.GetComponent<State>();
+
     }
 
     //void CheckGamepadStates()
@@ -81,15 +94,44 @@ public class State : MonoBehaviour
 
     void MoveStatesHandler()
     {
-        switch (currentMoveState)
+        if (gameObject.tag == "bluePlayer")
         {
-            case MoveStates.CAN_MOVE:
-                CanMoveInputHandler();
-                break;
+            switch (groundType)
+            {
+                case GroundType.GREEN:
+                    CanMoveInputHandler();
+                    break;
 
-            case MoveStates.CAN_NOT_MOVE:
-                CanNoteMoveInputHandler();
-                break;
+                case GroundType.BLUE:
+                    CanMoveInputHandler();
+                    break;
+                case GroundType.RED:
+                    mechanics.RespawnOnPosition();
+
+                    break;
+
+                case GroundType.AIR:
+                    break;
+            }
+        }
+        else if(gameObject.tag == "redPlayer")
+        {
+            switch (groundType)
+            {
+                case GroundType.GREEN:
+                    CanMoveInputHandler();
+                    break;
+
+                case GroundType.BLUE:
+                    mechanics.RespawnOnPosition();
+                    break;
+                case GroundType.RED:
+                    CanMoveInputHandler();
+                    break;
+
+                case GroundType.AIR:
+                    break;
+            }
         }
     }
 
@@ -115,6 +157,10 @@ public class State : MonoBehaviour
 
             case States.THROW:
                 State_THROW();
+                break;
+
+            case States.IN_CHARGE:
+                State_INCHARGE();
                 break;
 
             case States.IN_THROW:
@@ -161,9 +207,8 @@ public class State : MonoBehaviour
         }
         else if (command.Throw()) // throw key
         {
-            if (mechanics.InRange(gameObject, otherPlayer) && otherState.grounded)
+            if (mechanics.InRange(gameObject, otherPlayer) && otherState.groundType != GroundType.AIR)
             {
-                otherState.grounded = false;
                 otherState.currentState = States.IN_THROW;
                 currentState = States.THROW;
             }
@@ -184,6 +229,11 @@ public class State : MonoBehaviour
         {
             StartCoroutine(mechanics.shootProjectile(new Vector2(-7, 2)));
         }
+        else if (command.testButton()) //test
+        {
+            otherState.currentState = States.IN_THROW;
+            State_INCHARGE();
+        }
     }
 
     void State_THROW()
@@ -191,9 +241,28 @@ public class State : MonoBehaviour
         mechanics.Throw(otherPlayer);
         currentState = States.IDLE;
     }
+    void State_INCHARGE()
+    {
+        if(!chargePressed)
+            StartCoroutine(State_Charge());
+    }
+
+    IEnumerator State_Charge()
+    {
+        chargePressed = true;
+        chargeTime = 0;
+        while (command.testButton())
+        {
+            chargeTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        Debug.LogError(chargeTime);
+        GetComponent<Mechanics>().ChargeThrow(GetComponent<State>().otherPlayer, chargeTime);
+        chargePressed = false;
+    }
     void State_INTHROW()
     {
-        if (grounded)
+        if (groundType != GroundType.AIR)
         {
             currentState = States.IDLE;
         }
@@ -258,43 +327,88 @@ public class State : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("breakable"))
-        {
-            print("grounds");
+        //if (collision.gameObject.CompareTag("ground") || collision.gameObject.CompareTag("breakable"))
+        //{
+        //    print("grounds");
 
-            grounded = true;
-            currentMoveState = MoveStates.CAN_MOVE;
-        }
-        else if (collision.gameObject.CompareTag("blueTile"))
-        {
-            if (gameObject.tag == "redPlayer")
-            {
-                currentMoveState = MoveStates.CAN_NOT_MOVE;
-            }
-            else if (gameObject.tag == "bluePlayer")
-            {
-                currentMoveState = MoveStates.CAN_MOVE;
-            }
-            grounded = true;
-        }
-        else if (collision.gameObject.CompareTag("redTile"))
-        {
-            if (gameObject.tag == "bluePlayer")
-            {
-                currentMoveState = MoveStates.CAN_NOT_MOVE;
-            }
-            else if (gameObject.tag == "redPlayer")
-            {
-                currentMoveState = MoveStates.CAN_MOVE;
-            }
-            grounded = true;
-        }
+        //    grounded = true;
+        //    currentMoveState = MoveStates.CAN_MOVE;
+        //}
+        //else if (collision.gameObject.CompareTag("blueTile"))
+        //{
+        //    if (gameObject.tag == "redPlayer")
+        //    {
+        //        currentMoveState = MoveStates.CAN_NOT_MOVE;
+        //    }
+        //    else if (gameObject.tag == "bluePlayer")
+        //    {
+        //        currentMoveState = MoveStates.CAN_MOVE;
+        //    }
+        //    grounded = true;
+        //}
+        //else if (collision.gameObject.CompareTag("redTile"))
+        //{
+        //    if (gameObject.tag == "bluePlayer")
+        //    {
+        //        currentMoveState = MoveStates.CAN_NOT_MOVE;
+        //    }
+        //    else if (gameObject.tag == "redPlayer")
+        //    {
+        //        currentMoveState = MoveStates.CAN_MOVE;
+        //    }
+        //    grounded = true;
+        //}
+        //if (collision.gameObject.tag != prevGroundTypeString)
+        //{
+        //    if (collision.gameObject.tag == "ground")
+        //    {
+        //        groundType = GroundType.GREEN;
+        //    }
+        //    else if (collision.gameObject.tag == "redTile")
+        //    {
+        //        groundType = GroundType.RED;
+        //    }
+        //    else if (collision.gameObject.tag == "blueTile")
+        //    {
+        //        groundType = GroundType.BLUE;
+        //    }
+        //}
+        //prevGroundTypeString = collision.gameObject.tag;
+        //prevGroundType = groundType;
 
         //Debug.Log(collision.gameObject.transform.position);
 
     }
-    private void OnCollisionExit2D(Collision2D collision)
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        currentMoveState = MoveStates.CAN_MOVE;
+
+        if (collision.gameObject.tag == "ground")
+        {
+            groundType = GroundType.GREEN;
+        }
+        else if (collision.gameObject.tag == "redTile")
+        {
+            groundType = GroundType.RED;
+        }
+        else if (collision.gameObject.tag == "blueTile")
+        {
+            groundType = GroundType.BLUE;
+        }
+
+        prevGroundTypeString = collision.gameObject.tag;
+        prevGroundType = groundType;
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        groundType = GroundType.AIR;
+    }
+
+    
+
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    groundType = GroundType.AIR;
+    //}
 }

@@ -13,6 +13,6 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        controller.currentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y + 2, 0f);
+        controller.currentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - portal
   - breakable
   - draggable
+  - checkPoint
   layers:
   - Default
   - TransparentFX

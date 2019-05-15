@@ -18,6 +18,8 @@ public class Command : MonoBehaviour
 
     //Gamepad
     public PlayerIndex playerPadIndex;
+    GamePadState state;
+    GamePadState prevState;
 
     //Dance mat
     public PlayerIndex playerMatIndex;
@@ -46,8 +48,8 @@ public class Command : MonoBehaviour
 
     public bool Throw()
     {
-        return (Input.GetKey(throws) ||
-        GamePad.GetState(playerPadIndex).Triggers.Right != 0);
+        return (Input.GetKeyDown(throws) ||
+        (GamePad.GetState(playerPadIndex).Triggers.Right != 0 && prevState.Triggers.Right == 0));
     }
 
     public bool ButtonA()
@@ -70,31 +72,40 @@ public class Command : MonoBehaviour
         return (Input.GetKeyDown(Y) ||
         GamePad.GetState(playerMatIndex).Buttons.Y == ButtonState.Pressed);
     }
+    public bool testButton()
+    {
+        return Input.GetKey(KeyCode.R);
+    }
+    
 
     private void Update()
     {
-        ChargingThrow();
+        //ChargingThrow();
+        prevState = state;
+        state = GamePad.GetState(playerPadIndex);
     }
 
-    public void ChargingThrow()
-    {
-        if ((GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R)) && !chargePressed)
-        {
-            chargeTime = 0;
-            StartCoroutine(Charge());
-        };
+    //public void ChargingThrow()
+    //{
+    //    if ((GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R)) && !chargePressed)
+    //    {
+    //        chargeTime = 0;
+    //        StartCoroutine(Charge());
+    //        Debug.Log("After Throw" + chargeTime);
+    //    };
 
-    }
+    //}
 
-    IEnumerator Charge()
-    {
-        chargePressed = true;
-        while (GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R))
-        {
-            chargeTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        Debug.LogError(chargeTime);
-        chargePressed = false;
-    }
+    //IEnumerator Charge()
+    //{
+    //    chargePressed = true;
+    //    while (GamePad.GetState(playerPadIndex).Triggers.Right != 0 || Input.GetKey(KeyCode.R))
+    //    {
+    //        chargeTime += Time.deltaTime;
+    //        yield return new WaitForEndOfFrame();
+    //    }
+    //    Debug.LogError(chargeTime);
+    //    GetComponent<Mechanics>().ChargeThrow(GetComponent<State>().otherPlayer, chargeTime);
+    //    chargePressed = false;
+    //}
 }
