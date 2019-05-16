@@ -43,19 +43,21 @@ public class Command : MonoBehaviour
     public bool Grab()
     {
         return (Input.GetKey(grab) ||
-        GamePad.GetState(playerPadIndex).Triggers.Left != 0);
+        GamePad.GetState(playerPadIndex).Buttons.B == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed ||
+        GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.Y == ButtonState.Pressed);
     }
 
     public bool Throw()
     {
         return (Input.GetKeyDown(throws) ||
-        (GamePad.GetState(playerPadIndex).Triggers.Right != 0 && prevState.Triggers.Right == 0));
+        GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed 
+        && prevState.Triggers.Right == 0);
     }
 
     public bool ChargeThrow()
     {
         return (Input.GetKey(throws) ||
-       (GamePad.GetState(playerPadIndex).Triggers.Right != 0));
+       GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed);
     }
 
     public bool ButtonA()

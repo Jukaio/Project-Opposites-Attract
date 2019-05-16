@@ -1824,6 +1824,26 @@ PrefabInstance:
       propertyPath: checkPointController
       value: 
       objectReference: {fileID: 1491412192}
+    - target: {fileID: 1980312028781871458, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: playerPadIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980312028781871458, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: playerMatIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003474651652780077, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: playerPadIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7003474651652780077, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: playerMatIndex
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94db9aca00aff6c429f4549b4ba3a14e, type: 3}
 --- !u!1 &1228908859
