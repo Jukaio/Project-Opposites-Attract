@@ -13,7 +13,7 @@ public class Move : MonoBehaviour
         command = GetComponent<Command>();
     }
 
-    public States Main_Left(States currentState)
+    public States Main_Left(States currentState, GroundType groundType)
     {
         mechanics.MoveLeft();
         if (!command.MoveLeft()) //move key
@@ -24,10 +24,14 @@ public class Move : MonoBehaviour
         {
             return States.IDLE;
         }
+        else if (groundType == GroundType.AIR)
+        {
+            return States.IN_FALL;
+        }
         return currentState;
     }
 
-    public States Main_Right(States currentState)
+    public States Main_Right(States currentState, GroundType groundType)
     {
         mechanics.MoveRight();
         if (!command.MoveRight()) //move key
@@ -37,6 +41,10 @@ public class Move : MonoBehaviour
         else if (command.MoveLeft()) //move key
         {
             return States.IDLE;
+        }
+        else if (groundType == GroundType.AIR)
+        {
+            return States.IN_FALL;
         }
         return currentState;
     }

@@ -21,7 +21,6 @@ public class InThrow : MonoBehaviour
         }
         if (command.MoveLeft()) // move key
         {
-            Debug.Log("Left works");
             mechanics.MoveLeft();
         }
         else if (command.MoveRight()) //move key

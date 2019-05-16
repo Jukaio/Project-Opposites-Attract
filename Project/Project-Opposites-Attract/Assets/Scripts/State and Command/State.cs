@@ -66,27 +66,20 @@ public class State : MonoBehaviour
             switch (groundType)
             {
                 case GroundType.GREEN:
-                    CheckState();
+                    CheckState_Ground();
                     break;
 
                 case GroundType.BLUE:
-                    CheckState();
+                    CheckState_Ground();
                     break;
                 case GroundType.RED:
-                    mechanics.RespawnOnPosition();
-
+                    if (GetComponent<OnWrongGround>() == null)
+                        gameObject.AddComponent<OnWrongGround>();
+                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState);
                     break;
 
                 case GroundType.AIR:
-                    switch (currentState)
-                    {
-                        case States.IN_FALL:
-
-                            break;
-
-                        case States.IN_THROW:
-                            break;
-                    }
+                    CheckState_Air();
                     break;
             }
         }
@@ -95,24 +88,26 @@ public class State : MonoBehaviour
             switch (groundType)
             {
                 case GroundType.GREEN:
-                    CheckState();
+                    CheckState_Ground();
                     break;
 
                 case GroundType.BLUE:
-                    mechanics.RespawnOnPosition();
+                    if (GetComponent<OnWrongGround>() == null)
+                        gameObject.AddComponent<OnWrongGround>();
+                    currentState = GetComponent<OnWrongGround>().Main_WrongGround(currentState);
                     break;
                 case GroundType.RED:
-                    CheckState();
+                    CheckState_Ground();
                     break;
 
                 case GroundType.AIR:
-                    currentState = States.IN_FALL;
+                    CheckState_Air();
                     break;
             }
         }
     }
 
-    void CheckState()
+    void CheckState_Ground()
     {
         switch (currentState)
         {
@@ -125,13 +120,13 @@ public class State : MonoBehaviour
             case States.MOVE_LEFT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
-                currentState = GetComponent<Move>().Main_Left(currentState);
+                currentState = GetComponent<Move>().Main_Left(currentState, groundType);
                 break;
 
             case States.MOVE_RIGHT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
-                currentState = GetComponent<Move>().Main_Right(currentState);
+                currentState = GetComponent<Move>().Main_Right(currentState, groundType);
                 break;
 
             case States.GRAB:
@@ -163,6 +158,21 @@ public class State : MonoBehaviour
 
             default:
                 currentState = States.IDLE;
+                break;
+        }
+    }
+
+    void CheckState_Air()
+    {
+        switch(currentState)
+        {
+            case States.IN_FALL:
+                break;
+
+            case States.IN_THROW:
+                if (GetComponent<InThrow>() == null)
+                    gameObject.AddComponent<InThrow>();
+                currentState = GetComponent<InThrow>().Main_InThrow(groundType, currentState);
                 break;
         }
     }
