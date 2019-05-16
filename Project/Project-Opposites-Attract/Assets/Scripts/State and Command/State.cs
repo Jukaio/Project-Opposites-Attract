@@ -166,7 +166,22 @@ public class State : MonoBehaviour
     {
         switch(currentState)
         {
+            case States.MOVE_LEFT:
+                if (GetComponent<Move>() == null)
+                    gameObject.AddComponent<Move>();
+                currentState = GetComponent<Move>().Air_Left(currentState, groundType);
+                break;
+
+            case States.MOVE_RIGHT:
+                if (GetComponent<Move>() == null)
+                    gameObject.AddComponent<Move>();
+                currentState = GetComponent<Move>().Air_Right(currentState, groundType);
+                break;
+
             case States.IN_FALL:
+                if (GetComponent<Idle>() == null)
+                    gameObject.AddComponent<Idle>();
+                currentState = GetComponent<Idle>().Air_Idle(currentState);
                 break;
 
             case States.IN_THROW:
