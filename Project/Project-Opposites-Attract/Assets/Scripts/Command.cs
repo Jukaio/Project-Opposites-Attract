@@ -52,6 +52,12 @@ public class Command : MonoBehaviour
         (GamePad.GetState(playerPadIndex).Triggers.Right != 0 && prevState.Triggers.Right == 0));
     }
 
+    public bool ChargeThrow()
+    {
+        return (Input.GetKey(throws) ||
+       (GamePad.GetState(playerPadIndex).Triggers.Right != 0));
+    }
+
     public bool ButtonA()
     {
         return (Input.GetKeyDown(A) ||
@@ -71,10 +77,6 @@ public class Command : MonoBehaviour
     {
         return (Input.GetKeyDown(Y) ||
         GamePad.GetState(playerMatIndex).Buttons.Y == ButtonState.Pressed);
-    }
-    public bool testButton()
-    {
-        return Input.GetKey(KeyCode.R);
     }
     
 

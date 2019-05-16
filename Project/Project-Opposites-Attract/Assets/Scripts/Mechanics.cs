@@ -75,7 +75,7 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= rangeDist;
     }
 
-    public IEnumerator shootProjectile(Vector2 direction)
+    public IEnumerator ShootProjectile(Vector2 direction)
     {
         shootStuff.ActivateObj(direction);
         print("start wait");
