@@ -22,6 +22,19 @@ public class Idle : MonoBehaviour
         otherState = otherPlayer.GetComponent<State>();
     }
 
+    public States Air_Idle(States currentState)
+    {
+        if (command.MoveLeft()) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed
+        {
+            return States.MOVE_LEFT;
+        }
+        else if (command.MoveRight())
+        {
+            return States.MOVE_RIGHT;
+        }
+
+        return currentState;
+    }
     public States Main_Idle(States currentState)
     {
         if (command.MoveLeft()) //GamePad.GetState(PlayerIndex.One).DPad.Left == ButtonState.Pressed

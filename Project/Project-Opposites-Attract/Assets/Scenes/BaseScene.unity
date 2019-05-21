@@ -210,11 +210,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid_3
       objectReference: {fileID: 0}
-    - target: {fileID: 8317319185231732424, guid: 8501e56a1feca1647b2ec92d26c63ab5,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8317319184710717105, guid: 8501e56a1feca1647b2ec92d26c63ab5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -269,6 +264,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317319184710717104, guid: 8501e56a1feca1647b2ec92d26c63ab5,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317319184710717104, guid: 8501e56a1feca1647b2ec92d26c63ab5,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8317319185231732424, guid: 8501e56a1feca1647b2ec92d26c63ab5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8501e56a1feca1647b2ec92d26c63ab5, type: 3}
