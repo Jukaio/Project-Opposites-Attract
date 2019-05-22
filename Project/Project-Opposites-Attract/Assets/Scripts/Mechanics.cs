@@ -9,7 +9,10 @@ public class Mechanics : MonoBehaviour
     public float movementSpeed;
     public Vector2 throwHeight;
     public Transform parent;
-    
+
+    public float minForce;
+    public float maxForce;
+
     public Tilemap tilemap;
     public Tile tile;
 
@@ -64,6 +67,11 @@ public class Mechanics : MonoBehaviour
 
     public void ChargeThrow(GameObject obj2, float factor)
     {
+        if (factor < minForce)
+            factor = minForce;
+        else if (factor > maxForce)
+            factor = maxForce;
+
         if (obj2.transform.position.x >= transform.position.x)
             obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight * factor, ForceMode2D.Impulse);
         else if (obj2.transform.position.x <= transform.position.x)
