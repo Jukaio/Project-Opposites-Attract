@@ -3460,6 +3460,11 @@ PrefabInstance:
       propertyPath: throwHeight.y
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7003474651652780065, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: mechanic1poolAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1980312028781871457, guid: 94db9aca00aff6c429f4549b4ba3a14e,
         type: 3}
       propertyPath: checkPointController
@@ -3479,6 +3484,21 @@ PrefabInstance:
         type: 3}
       propertyPath: throwHeight.y
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980312028781871457, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: mechanic1poolAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980312028781871457, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: tileSpawnPosition.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1980312028781871457, guid: 94db9aca00aff6c429f4549b4ba3a14e,
+        type: 3}
+      propertyPath: tileSpawnPosition.y
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1980312028781871459, guid: 94db9aca00aff6c429f4549b4ba3a14e,
         type: 3}

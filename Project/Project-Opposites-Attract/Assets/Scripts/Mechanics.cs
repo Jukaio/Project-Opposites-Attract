@@ -13,8 +13,6 @@ public class Mechanics : MonoBehaviour
     public Tilemap tilemap;
     public Tile tile;
 
-    public Vector2 tileSpawnPosition;
-
     public Transform projectileSpawn;
 
     //Mechanic 1
