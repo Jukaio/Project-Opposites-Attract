@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using XInputDotNetPure;
+using System.IO;
+using UnityEditor.Animations;
 
 public enum States
 {
@@ -27,6 +29,7 @@ public enum GroundType
 
 public class State : MonoBehaviour
 {
+
     public string canNotMoveOn;
     public string canMoveOn;
 
@@ -56,7 +59,9 @@ public class State : MonoBehaviour
 
     void Update()
     {
+        
         CheckGroundType();
+
     }
 
     void CheckGroundType()
@@ -115,12 +120,14 @@ public class State : MonoBehaviour
                 if (GetComponent<Idle>() == null)
                     gameObject.AddComponent<Idle>();
                 currentState = GetComponent<Idle>().Main_Idle(currentState);
+                
                 break;
 
             case States.MOVE_LEFT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Left(currentState, groundType);
+
                 break;
 
             case States.MOVE_RIGHT:

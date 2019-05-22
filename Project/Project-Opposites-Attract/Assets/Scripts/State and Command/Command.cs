@@ -24,9 +24,6 @@ public class Command : MonoBehaviour
     //Dance mat
     public PlayerIndex playerMatIndex;
 
-    //charge
-    private float chargeTime = 0;
-    private bool chargePressed = false;
 
     public bool MoveLeft()
     {
