@@ -13,6 +13,14 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        controller.currentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
+        if (collision.CompareTag("redPlayer"))
+        {
+            controller.redCurrentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
+        }
+        else if (collision.CompareTag("bluePlayer"))
+        {
+            controller.blueCurrentPoint = new Vector3(collision.transform.position.x, collision.transform.position.y, 0f);
+        }
+        
     }
 }
