@@ -10,11 +10,15 @@ public class Projectile : MonoBehaviour
         GetComponent<Rigidbody2D>().AddForce(direction, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("redPlayer") && 
-            !collision.gameObject.CompareTag("bluePlayer") && 
-            !collision.gameObject.CompareTag("breakable"))
+        if (gameObject.CompareTag("breakable") && collision.gameObject.CompareTag("fireball"))
+        {
+            gameObject.SetActive(false);
+        }
+        else if (!collision.gameObject.CompareTag("redPlayer") &&
+                 !collision.gameObject.CompareTag("bluePlayer") &&
+                 !collision.gameObject.CompareTag("breakable") && gameObject.CompareTag("fireball"))
         {
             gameObject.SetActive(false);
         }

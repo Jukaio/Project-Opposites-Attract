@@ -16,8 +16,6 @@ public class Mechanics : MonoBehaviour
     public Tilemap tilemap;
     public Tile tile;
 
-    public Vector2 tileSpawnPosition;
-
     public Transform projectileSpawn;
 
     //Mechanic 1
@@ -93,6 +91,14 @@ public class Mechanics : MonoBehaviour
 
     public void RespawnOnPosition()
     {
-        transform.position = checkPointController.currentPoint;
+        if (gameObject.CompareTag("redPlayer"))
+        {
+            transform.position = checkPointController.redCurrentPoint;
+        }
+        else if (gameObject.CompareTag("bluePlayer"))
+        {
+            transform.position = checkPointController.blueCurrentPoint;
+        }
+        
     }
 }

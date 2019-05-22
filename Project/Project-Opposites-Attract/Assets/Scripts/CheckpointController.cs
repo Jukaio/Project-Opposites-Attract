@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    public Vector3 currentPoint;
+    public Vector3 redCurrentPoint;
+    public Vector3 blueCurrentPoint;
 
 }
