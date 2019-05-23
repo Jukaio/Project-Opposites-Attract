@@ -248,7 +248,7 @@ public class State : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
 
-        if (collision.gameObject.tag == "ground")
+        if (collision.gameObject.tag == "ground" || collision.gameObject.tag == "breakable" || collision.gameObject.tag == "draggable")
         {
             groundType = GroundType.GREEN;
         }

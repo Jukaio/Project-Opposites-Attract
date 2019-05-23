@@ -22,6 +22,6 @@ public class Reset : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        scriptsScene.LoadLevel(1);
+        scriptsScene.LoadLevel(0);
     }
 }
