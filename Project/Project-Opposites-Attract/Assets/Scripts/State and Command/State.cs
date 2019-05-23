@@ -29,6 +29,7 @@ public enum GroundType
 
 public class State : MonoBehaviour
 {
+    GameObject walkingTrail;
 
     public string canNotMoveOn;
     public string canMoveOn;
@@ -39,7 +40,7 @@ public class State : MonoBehaviour
     public string prevGroundTypeString;
 
     public States currentState;
-
+    public States prevState;
 
     public GameObject otherPlayer;
     public State otherState;
@@ -51,6 +52,17 @@ public class State : MonoBehaviour
 
     void Start()
     {
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).GetComponent<ParticleSystem>() != null)
+            {
+                walkingTrail = transform.GetChild(i).gameObject;
+                ParticleSystem.EmissionModule emissionModule;
+                emissionModule = walkingTrail.GetComponent<ParticleSystem>().emission;
+                emissionModule.rateOverTime = 10;
+            }
+        }
+
         mechanics = GetComponent<Mechanics>();
         otherMechanics = otherPlayer.GetComponent<Mechanics>();
 
@@ -61,6 +73,8 @@ public class State : MonoBehaviour
     {
         
         CheckGroundType();
+
+        prevState = currentState;
 
     }
 
@@ -120,7 +134,7 @@ public class State : MonoBehaviour
                 if (GetComponent<Idle>() == null)
                     gameObject.AddComponent<Idle>();
                 currentState = GetComponent<Idle>().Main_Idle(currentState);
-                
+
                 break;
 
             case States.MOVE_LEFT:
@@ -128,13 +142,16 @@ public class State : MonoBehaviour
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Left(currentState, groundType);
 
-                break;
+                walkingTrail.SetActive(true);
+                return;
 
             case States.MOVE_RIGHT:
                 if (GetComponent<Move>() == null)
                     gameObject.AddComponent<Move>();
                 currentState = GetComponent<Move>().Main_Right(currentState, groundType);
-                break;
+
+                walkingTrail.SetActive(true);
+                return;
 
             case States.GRAB:
                 if (GetComponent<Grab>() == null)
@@ -167,6 +184,7 @@ public class State : MonoBehaviour
                 currentState = States.IDLE;
                 break;
         }
+        walkingTrail.SetActive(false);
     }
 
     void CheckState_Air()
@@ -223,4 +241,5 @@ public class State : MonoBehaviour
     {
         groundType = GroundType.AIR;
     }
+
 } 
