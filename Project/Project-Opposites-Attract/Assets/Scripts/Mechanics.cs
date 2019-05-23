@@ -7,6 +7,7 @@ public class Mechanics : MonoBehaviour
 {
     public float rangeDist;
     public float movementSpeed;
+    public float airMovementSpeed;
     public Vector2 throwHeight;
     public Transform parent;
 
@@ -46,6 +47,16 @@ public class Mechanics : MonoBehaviour
     public void MoveRight()
     {
         transform.Translate(new Vector2(movementSpeed, 0f));
+    }
+
+    public void MoveLeft_Air()
+    {
+        transform.Translate(new Vector2(-airMovementSpeed, 0f));
+    }
+
+    public void MoveRight_Air()
+    {
+        transform.Translate(new Vector2(airMovementSpeed, 0f));
     }
 
     public void GrabAttach(GameObject obj1, GameObject obj2)

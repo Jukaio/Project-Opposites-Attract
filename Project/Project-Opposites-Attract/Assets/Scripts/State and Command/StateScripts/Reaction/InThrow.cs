@@ -21,11 +21,11 @@ public class InThrow : MonoBehaviour
         }
         if (command.MoveLeft()) // move key
         {
-            mechanics.MoveLeft();
+            mechanics.MoveLeft_Air();
         }
         else if (command.MoveRight()) //move key
         {
-            mechanics.MoveRight();
+            mechanics.MoveRight_Air();
         }
         return currentState;
     }
