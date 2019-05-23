@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Throw : MonoBehaviour
@@ -11,8 +10,11 @@ public class Throw : MonoBehaviour
     Mechanics mechanics;
     Command command;
 
-    public float chargeTime = 0;
+    public GameObject chargeBar;
+
+    public float chargeFactor = 0;
     bool charging = false;
+    public float chargeTime = 0;
 
     private void Awake()
     {
@@ -22,6 +24,12 @@ public class Throw : MonoBehaviour
 
         otherState = state.otherState;
         otherPlayer = state.otherPlayer;
+
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if(transform.GetChild(i).name == "Chargebar")
+            chargeBar = transform.GetChild(i).gameObject;
+        }
     }
 
     public States Main_Throw(States currentState)
@@ -30,28 +38,36 @@ public class Throw : MonoBehaviour
         return States.IDLE;
     }
 
-    public States Main_Charge(States currentState)
+    public States Main_Charge(States currentState, float maxChargeTime, float chargeRate)
     {
         if (!charging)
         {
-            StartCoroutine(State_Charge());
+            StartCoroutine(State_Charge(maxChargeTime, chargeRate));
         }
         if (charging)
             return currentState;
         return States.IDLE;
     }
 
-    IEnumerator State_Charge()
+    IEnumerator State_Charge(float maxChargeTime, float chargeRate)
     {
         charging = true;
+        chargeFactor = 0;
         chargeTime = 0;
         otherState.currentState = States.IN_CHARGE;
+
+        chargeBar.SetActive(true);
         while (command.ChargeThrow())
         {
-            chargeTime += Time.deltaTime;
+            if (chargeTime <= maxChargeTime)
+            {
+                chargeFactor += Time.deltaTime / chargeRate;
+                chargeTime += Time.deltaTime;
+            }
             yield return new WaitForEndOfFrame();
         }
-        GetComponent<Mechanics>().ChargeThrow(GetComponent<State>().otherPlayer, chargeTime);
+        chargeBar.SetActive(false);
+        GetComponent<Mechanics>().ChargeThrow(GetComponent<State>().otherPlayer, chargeFactor);
         otherState.currentState = States.IN_THROW;
         charging = false;
     }

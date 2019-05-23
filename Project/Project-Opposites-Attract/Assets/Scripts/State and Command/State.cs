@@ -50,6 +50,9 @@ public class State : MonoBehaviour
 
     public bool grounded;
 
+    public GameObject throwSprite;
+    public GameObject grabSprite;
+
     void Start()
     {
         for(int i = 0; i < transform.childCount; i++)
@@ -75,6 +78,29 @@ public class State : MonoBehaviour
         CheckGroundType();
 
         prevState = currentState;
+
+        if (currentState == States.MOVE_LEFT)
+            GetComponent<SpriteRenderer>().flipX = true;
+        else
+            GetComponent<SpriteRenderer>().flipX = false;
+
+        if(currentState == States.GRAB)
+        {
+            grabSprite.SetActive(true);
+        }
+        else
+        {
+            grabSprite.SetActive(false);
+        }
+
+        if(currentState == States.THROW)
+        {
+            throwSprite.SetActive(true);
+        }
+        else
+        {
+            throwSprite.SetActive(false);
+        }
 
     }
 
@@ -161,8 +187,10 @@ public class State : MonoBehaviour
 
             case States.THROW:
                 if (GetComponent<Throw>() == null)
-                    gameObject.AddComponent<Throw>();
-                currentState = GetComponent<Throw>().Main_Charge(currentState);
+                {
+                    Throw temp = gameObject.AddComponent<Throw>();
+                }
+                currentState = GetComponent<Throw>().Main_Charge(currentState, mechanics.maxChargeTime, mechanics.chargeRate);
                 break;
 
             case States.IN_THROW:

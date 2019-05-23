@@ -10,6 +10,9 @@ public class Mechanics : MonoBehaviour
     public Vector2 throwHeight;
     public Transform parent;
 
+    public float chargeRate;
+    public float maxChargeTime;
+
     public float minForce;
     public float maxForce;
 
@@ -67,9 +70,9 @@ public class Mechanics : MonoBehaviour
     {
         if (factor < minForce)
             factor = minForce;
-        else if (factor > maxForce)
+        else if (factor >= maxForce)
             factor = maxForce;
-
+        
         if (obj2.transform.position.x >= transform.position.x)
             obj2.GetComponent<Rigidbody2D>().AddForce(throwHeight * factor, ForceMode2D.Impulse);
         else if (obj2.transform.position.x <= transform.position.x)
