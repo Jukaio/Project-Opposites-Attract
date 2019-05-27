@@ -54,7 +54,8 @@ public class Command : MonoBehaviour
     public bool ChargeThrow()
     {
         return (Input.GetKey(throws) ||
-       GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed);
+       (GamePad.GetState(playerPadIndex).Buttons.X == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.A == ButtonState.Pressed) || 
+       (GamePad.GetState(playerPadIndex).Buttons.Y == ButtonState.Pressed && GamePad.GetState(playerPadIndex).Buttons.B == ButtonState.Pressed));
     }
 
     public bool ButtonA()
