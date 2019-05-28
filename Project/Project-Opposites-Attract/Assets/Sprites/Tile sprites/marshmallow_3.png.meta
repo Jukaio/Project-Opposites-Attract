@@ -90,9 +90,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 512
+        y: 0
         width: 512
-        height: 512
+        height: 513
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,7 +100,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cec32f6fe0e544f4dbe8d80da8170269
+      spriteID: bfabeaf004ddab745a0f170b356b2911
       vertices: []
       indices: 
       edges: []
@@ -109,10 +109,10 @@ TextureImporter:
       name: marshmallow_3_1
       rect:
         serializedVersion: 2
-        x: 0
+        x: 512
         y: 0
         width: 512
-        height: 512
+        height: 513
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,7 +120,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f95ed54ba53d2dd40a0478a398ee44a7
+      spriteID: f4e64d259e6cd5a4c840442d6639fc85
       vertices: []
       indices: 
       edges: []
@@ -128,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: a715e231a86528440909584e15489e47
+    spriteID: b015df04bd4be5f4b8ae513cc99d83da
     vertices: []
     indices: 
     edges: []
