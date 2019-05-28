@@ -21,6 +21,8 @@ public class Mechanics : MonoBehaviour
     public Tile tile;
 
     public Transform projectileSpawn;
+    public float projectileCooldown;
+    public float projectileCooldownHolder;
 
     //Mechanic 1
     public bool mechanic1;
@@ -32,6 +34,8 @@ public class Mechanics : MonoBehaviour
 
     private void Start()
     {
+        projectileCooldownHolder = projectileCooldown;
+
         Debug.Log(mechanic1poolAmount + " in start");
         if (mechanic1)
         {
@@ -95,12 +99,13 @@ public class Mechanics : MonoBehaviour
         return Vector2.Distance(obj1.transform.position, obj2.transform.position) <= rangeDist;
     }
 
-    public IEnumerator ShootProjectile(Vector2 direction)
+    public void ShootProjectile(Vector2 direction)
     {
-        shootStuff.ActivateObj(direction);
-        print("start wait");
-        yield return new WaitForSeconds(2f);
-        print("end wait");
+        if (projectileCooldown <= 0)
+        {
+            projectileCooldown = projectileCooldownHolder;
+            shootStuff.ActivateObj(direction);
+        }
     }
 
     public void RespawnOnPosition()
@@ -112,7 +117,14 @@ public class Mechanics : MonoBehaviour
         else if (gameObject.CompareTag("bluePlayer"))
         {
             transform.position = checkPointController.blueCurrentPoint;
-        }
-        
+        }   
+    }
+
+    private void Update()
+    {
+        projectileCooldown -= Time.deltaTime;
+        if (projectileCooldown < 0)
+            projectileCooldown = 0;
+
     }
 }

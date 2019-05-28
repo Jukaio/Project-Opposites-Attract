@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using XInputDotNetPure;
 using System.IO;
-using UnityEditor.Animations;
+
 
 public enum States
 {
@@ -41,6 +41,7 @@ public class State : MonoBehaviour
 
     public States currentState;
     public States prevState;
+    private bool dirTemp;
 
     public GameObject otherPlayer;
     public State otherState;
@@ -80,11 +81,23 @@ public class State : MonoBehaviour
         prevState = currentState;
 
         if (currentState == States.MOVE_LEFT)
+        {
             GetComponent<SpriteRenderer>().flipX = true;
-        else
+            dirTemp = true;
+            
+        }
+        else if (currentState == States.MOVE_RIGHT)
+        {
             GetComponent<SpriteRenderer>().flipX = false;
+            dirTemp = false;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().flipX = dirTemp;
+        }
 
-        if(currentState == States.GRAB)
+
+        if (currentState == States.GRAB)
         {
             grabSprite.SetActive(true);
         }

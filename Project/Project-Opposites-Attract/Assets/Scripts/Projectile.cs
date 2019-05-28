@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
     public void MoveProjectile(Vector2 direction)
     {
         gameObject.SetActive(true);
