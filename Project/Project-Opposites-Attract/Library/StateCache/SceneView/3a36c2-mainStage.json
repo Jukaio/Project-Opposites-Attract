@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 ﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-8.70469856262207,"y":-5.709352016448975,"z":-0.29629895091056826},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":41.49324417114258,"orthographic":true}
+=======
+<<<<<<< Updated upstream
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":-13.539247512817383,"y":-11.393961906433106,"z":-0.19921875},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":29.663856506347658,"orthographic":true}
+=======
+﻿{"cameraMode":{"drawMode":0,"name":"Shaded","section":"Shading Mode"},"sceneLighting":true,"audioPlay":false,"sceneViewState":{"showFog":true,"showMaterialUpdate":false,"showSkybox":true,"showFlares":true,"showImageEffects":true,"showParticleSystems":true},"in2DMode":true,"pivot":{"x":65.35476684570313,"y":-0.8536874651908875,"z":-0.5411280989646912},"rotation":{"x":0.0,"y":0.0,"z":0.0,"w":1.0},"size":87.59461212158203,"orthographic":true}
+>>>>>>> Stashed changes
+>>>>>>> 2da96d2... Animation from Germinal and Scripts

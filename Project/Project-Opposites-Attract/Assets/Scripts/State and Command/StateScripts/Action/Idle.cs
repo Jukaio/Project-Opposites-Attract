@@ -63,19 +63,19 @@ public class Idle : MonoBehaviour
         }
         else if (command.ButtonA())
         {
-            StartCoroutine(mechanics.ShootProjectile(new Vector2(4f, 8)));
+            mechanics.ShootProjectile(new Vector2(4f, 8));
         }
         else if (command.ButtonB())
         {
-            StartCoroutine(mechanics.ShootProjectile(new Vector2(-4f, 8)));
+            mechanics.ShootProjectile(new Vector2(-4f, 8));
         }
         else if (command.ButtonX())
         {
-            StartCoroutine(mechanics.ShootProjectile(new Vector2(8f, 4)));
+            mechanics.ShootProjectile(new Vector2(8f, 4));
         }
         else if (command.ButtonY())
         {
-            StartCoroutine(mechanics.ShootProjectile(new Vector2(-8, 4)));
+            mechanics.ShootProjectile(new Vector2(-8, 4));
         }
         return currentState;
     }
