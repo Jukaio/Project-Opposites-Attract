@@ -1,9 +1,58 @@
 fileFormatVersion: 2
 guid: 1c1fe09993ed8e64098e6d0d2b508a19
 ScriptedImporter:
-  internalIDToNameTable: []
+  fileIDToRecycleName:
+    100000: racoon-_for_animation1_GO/racoon-_for_animation1_GO
+    100002: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1
+    100004: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2
+    100006: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4
+    100008: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_3
+    100010: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_6
+    100012: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_8
+    100014: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_9
+    100016: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_11
+    100018: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 1
+    100020: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 2
+    100022: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 3
+    100024: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 0
+    100026: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 1
+    100028: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 2
+    400000: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Transform
+    400002: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/Transform
+    400004: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/Transform
+    400006: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/Transform
+    400008: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_3/Transform
+    400010: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_6/Transform
+    400012: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_2/bone_4/bone_8/Transform
+    400014: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_9/Transform
+    400016: racoon-_for_animation1_GO/racoon-_for_animation1_GO/bone_1/bone_11/Transform
+    400018: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 1/Transform
+    400020: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 2/Transform
+    400022: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 3/Transform
+    400024: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 0/Transform
+    400026: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 1/Transform
+    400028: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 2/Transform
+    2800000: racoon-_for_animation1
+    11400000: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    11400002: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    11400004: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 3/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    11400006: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 0/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    11400008: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 1/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    11400010: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 2/MonoBehaviour-UnityEngine.Experimental.U2D.Animation.SpriteSkin
+    21200000: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 1/SpriteRenderer
+    21200002: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 2/SpriteRenderer
+    21200004: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Layer 3/SpriteRenderer
+    21200006: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 0/SpriteRenderer
+    21200008: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 1/SpriteRenderer
+    21200010: racoon-_for_animation1_GO/racoon-_for_animation1_GO/Warstwa 2/SpriteRenderer
+    21300000: 94864e7ad3cae3e42be5703d26d50b15
+    21300002: e8acb334fa4ac43449b11ed8f1e6d1e8
+    21300004: 08a80fe01bd41d54483e32be9fb8fd28
+    21300006: 8933850d6f73d3243824b084992200f6
+    21300008: a0679cc056e5cc745a2ac6319c48e6fa
+    21300010: 22f7ab3ad66a845489dd75d277bcca90
+    100100000: racoon-_for_animation1_GO
   externalObjects: {}
-  serializedVersion: 2
   userData: 
   assetBundleName: 
   assetBundleVariant: 
@@ -74,7 +123,6 @@ ScriptedImporter:
       width: 0
       height: 0
     spriteID: 
-    internalID: 0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -98,7 +146,6 @@ ScriptedImporter:
       width: 343
       height: 337
     spriteID: 94864e7ad3cae3e42be5703d26d50b15
-    internalID: 0
     spriteBone:
     - name: bone_3
       position: {x: 182.36298, y: 76.81534, z: 0}
@@ -759,7 +806,6 @@ ScriptedImporter:
       width: 97
       height: 109
     spriteID: e8acb334fa4ac43449b11ed8f1e6d1e8
-    internalID: 0
     spriteBone:
     - name: bone_6
       position: {x: 68.45087, y: 93.4026, z: 0}
@@ -1162,7 +1208,6 @@ ScriptedImporter:
       width: 68
       height: 95
     spriteID: 08a80fe01bd41d54483e32be9fb8fd28
-    internalID: 0
     spriteBone:
     - name: bone_9
       position: {x: 37.955444, y: 80.73715, z: 0}
@@ -1548,7 +1593,6 @@ ScriptedImporter:
       width: 171
       height: 178
     spriteID: 8933850d6f73d3243824b084992200f6
-    internalID: 0
     spriteBone:
     - name: bone_1
       position: {x: 90.13403, y: 8.414734, z: 0}
@@ -1945,7 +1989,6 @@ ScriptedImporter:
       width: 54
       height: 89
     spriteID: a0679cc056e5cc745a2ac6319c48e6fa
-    internalID: 0
     spriteBone:
     - name: bone_11
       position: {x: 25.160126, y: 72.66089, z: 0}
@@ -2329,7 +2372,6 @@ ScriptedImporter:
       width: 54
       height: 87
     spriteID: 22f7ab3ad66a845489dd75d277bcca90
-    internalID: 0
     spriteBone:
     - name: bone_8
       position: {x: 24.68039, y: 66.5298, z: 0}
@@ -2924,21 +2966,21 @@ ScriptedImporter:
       bones: 05000000
     dimension: {x: 0, y: 0}
   boneGOs:
-  - go: {fileID: 2846657648469034394, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100002, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 0
-  - go: {fileID: -1794443762106574511, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100004, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 1
-  - go: {fileID: -8401103500330695548, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100008, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 2
-  - go: {fileID: 8809459405524077754, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100006, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 3
-  - go: {fileID: -6968715203619957345, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100010, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 4
-  - go: {fileID: -9139832680586362571, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100012, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 5
-  - go: {fileID: 7766460779853987821, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100014, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 6
-  - go: {fileID: 159511622814177076, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
+  - go: {fileID: 100016, guid: 1c1fe09993ed8e64098e6d0d2b508a19, type: 3}
     index: 7
   generateGOHierarchy: 0
   textureAssetName: racoon-_for_animation1
