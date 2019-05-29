@@ -2667,7 +2667,7 @@ ScriptedImporter:
     - {x: 0, y: 28}
     tessellationDetail: 0
     parentGroupIndex: -1
-    uvTransform: {x: -124, y: 309}
+    uvTransform: {x: -118, y: 313}
   - name: Layer 1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -3097,48 +3097,62 @@ ScriptedImporter:
   characterMode: 1
   mosaicPSDLayers: []
   rigPSDLayers:
+  - name: 3/4 front
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 00000000000000000000000000000000
+    layerID: 17
+    mosaicPosition: {x: 0, y: 0}
   - name: Warstwa 1
     spriteName: Warstwa 1
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: e910bab35d484d640beadac30734d18f
     layerID: 4
     mosaicPosition: {x: 4, y: 4}
   - name: Warstwa 2
     spriteName: Warstwa 2
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: d13962959adc7004995cc69b211d6ac8
     layerID: 5
     mosaicPosition: {x: 388, y: 4}
   - name: Warstwa 0
     spriteName: Warstwa 0
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: 4503f0a9b3ce5124bb8255b85aed1f64
     layerID: 3
     mosaicPosition: {x: 4, y: 340}
   - name: Layer 3
     spriteName: Layer 3
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: ec8f3bcbd78650c4786eb92a9e042113
     layerID: 8
     mosaicPosition: {x: 388, y: 117}
   - name: Layer 2
     spriteName: Layer 2
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: c1bde0ebe6af13a42a12ece79a765266
     layerID: 7
     mosaicPosition: {x: 152, y: 340}
   - name: Layer 1
     spriteName: Layer 1
     isGroup: 0
-    parentIndex: -1
+    parentIndex: 0
     spriteID: ff97dd994e210c941bf3a5bcb5a02d5e
     layerID: 6
     mosaicPosition: {x: 388, y: 236}
+  - name: Sideview
+    spriteName: 
+    isGroup: 1
+    parentIndex: -1
+    spriteID: 00000000000000000000000000000000
+    layerID: 19
+    mosaicPosition: {x: 0, y: 0}
   characterData:
     bones:
     - name: bone_1
